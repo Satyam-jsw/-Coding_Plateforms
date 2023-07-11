@@ -1,0 +1,19 @@
+.outaccp{
+   position: absolute;
+   top:20%;
+   left:20%;
+   color:aqua;
+}
+.accp{
+    text-align: center;
+    width: 60vw;
+    position:center;
+    color: cornflowerblue;
+}
+.accq{
+    display: block;
+    margin: 20px;
+    /* border: solid; */
+    border-radius: 1px;
+    color: chocolate;
+}
