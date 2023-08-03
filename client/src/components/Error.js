@@ -11,7 +11,7 @@ const Error=()=>{
     },[]);
   return (
     <div>
-     <h1>{error}</h1>
+     <h1>Error in page<br/>{error}</h1>
     </div>
   );
 }
