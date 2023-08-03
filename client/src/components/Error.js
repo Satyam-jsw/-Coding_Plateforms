@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-// import './css/home.css'
+
 import { useState } from 'react';
 const Error=()=>{
     let [error,ferror]=useState('');
