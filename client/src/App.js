@@ -5,14 +5,14 @@ import Problem from './components/Problemsheet/Question';
 import Navbar from './components/Navbar';
 import Comments from './components/Disscusion/Comments';
 import Home from './components/Home';
-import {Add} from './components/serverwork/Addnq';
+import {Add} from './components/serverwork/AddNewQuestion';
 import INPUT from './components/serverwork/Addinput';
-import Acc from './components/Problemsheet/accp';
-import Login from './components/Userauth/Login';
-import Logout from './components/Userauth/Logout';
-import Register from './components/Userauth/Register';
-import Forgetpage from './components/Userauth/forgetpage';
-import Forget from './components/Userauth/forgetpass';
+import Acc from './components/Problemsheet/testCaseStatus';
+import Login from './components/UserAuthentication/Login';
+import Logout from './components/UserAuthentication/Logout';
+import Register from './components/UserAuthentication/Register';
+import Forgetpage from './components/UserAuthentication/forgetpage';
+import Forget from './components/UserAuthentication/forgetpassword';
 import Error from './components/Error';
 
 function App() {

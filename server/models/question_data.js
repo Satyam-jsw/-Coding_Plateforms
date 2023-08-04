@@ -1,44 +1,50 @@
 const mongoose=require('mongoose');
 
+/*{question_id,question_title,question_topic,question_description,acceptance_rate,question_level,
+    constraints,input_description,output_description}*/
 
 const Schema=mongoose.Schema({
-    qid:{
+    question_id:{
         type:Number,
         required:true
     },
-    qtitle:{
+    question_title:{
      type:String,
      required:true
     },
-    qdesc:{
+    question_topic:{
         type:String,
         required:true
     },
-    level:{
+    question_description:{
+        type:String,
+        required:true
+    },
+    question_level:{
         type:String,
         required:true
        },
-    accr:{
+    acceptance_rate:{
         type:Number,
         required:true
     },
-    const:{
+    constraints:{
         type:String,
         required:true
        },
-    inputf:{
+    input_description:{
         type:String,
         required:true
     },
-    outputf:{
+    output_description:{
         type:String,
         required:true
        },
     input:[{type:String}],
     output:[{type:String}]
     })
-
-
+   
+//question store in database
     const Que= new mongoose.model('Que',Schema);
 
-    module.exports=Que
+    module.exports=Que;

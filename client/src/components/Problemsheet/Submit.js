@@ -1,53 +1,54 @@
 import React, { useState ,useEffect} from "react";
 import "../../App.css";
 import { useNavigate } from "react-router-dom";
-let ans=[];
+let answer=[];
 const Submit=(props)=>{
   
   const navigate=useNavigate();
-     let qno=props.p1;
-     let [input,finput]=useState(props.p2);
-     let [lan,flan]=useState('');
-     let [code,fcode]=useState('');
-     let [output,foutput]=useState('');
+     let questinNo=props.p1;
+     let [input,setInput]=useState(props.p2);
+     let [lan,setLan]=useState('');
+     let [code,setCode]=useState('');
+     let [output,setOutput]=useState('');
+     
      let Run=async(val)=>{
       val.preventDefault();
-      let cont={code:code,language:lan,input:input}
-      console.log(cont);
-      let res=await fetch('/test',{
+      let Data={code:code,language:lan,input:input}
+      console.log(Data);
+      let response=await fetch('/test',{
         method:"POST",
         headers: {
           "Accept": "application/json",
           "Content-Type": "application/json"
         },
-        body:JSON.stringify(cont)
+        body:JSON.stringify(Data)
       });
-      let out=await res.json();
-      if(out.err){
-        foutput(out.err)
+      let output=await response.json();
+      if(output.error){
+        setOutput(output.error)
       }
       else
-      foutput(out.data);
+      setOutput(output.data);
      }
      
-     let sumit=async (val)=>{
+     let submitCode=async (val)=>{
       val.preventDefault();
-      let cont={no:qno,code:code,language:lan,input:input}
-      // console.log(cont);
-      let res=await fetch('/submit',{
+      let Data={no:questinNo,code:code,language:lan,input:input}
+      
+      let response=await fetch('/submit',{
         method:"POST",
         headers: {
           "Accept": "application/json",
           "Content-Type": "application/json"
         },
-        body:JSON.stringify(cont)
+        body:JSON.stringify(Data)
       });
-      let out=await res.json();
-      if(out.errr){
-        foutput(out.errr)
+      let output=await response.json();
+      if(output.error){
+        setOutput(output.error)
       }
       else{
-        ans=out.p;
+        answer=output.result;
         navigate('/accp');
       }
      }
@@ -57,9 +58,9 @@ const Submit=(props)=>{
         <div>
    <form>
    <div id = "div2">
-    <textarea  cols="20" rows="20" placeholder='Type your code here' onChange={e=>fcode(e.target.value)}></textarea> 
+    <textarea  cols="20" rows="20" placeholder='Type your code here' onChange={e=>setCode(e.target.value)}></textarea> 
   </div>
-<select className="form-select form-select-sm sum" aria-label=".form-select-sm example" onClick={e=>flan(e.target.value)}>
+<select className="form-select form-select-sm sum" aria-label=".form-select-sm example" onClick={e=>setLan(e.target.value)}>
   <option selected>Select language</option>
   <option value="java">Java</option>
   <option value="py" >Python	</option>
@@ -71,11 +72,11 @@ const Submit=(props)=>{
 </select>
 <pre>        </pre>
 <button onClick={Run}>Run</button>
-<button onClick={sumit}>Submit</button>
+<button onClick={submitCode}>Submit</button>
 <pre>        </pre>
 <div style={{width:'50%'}}>
 <label>Custom Input:</label>
-<textarea style={{width:'100%'}} cols="10" rows="5" placeholder='Enter Input here..' onChange={e=>finput(e.target.value)}  />
+<textarea style={{width:'100%'}} cols="10" rows="5" placeholder='Enter Input here..' onChange={e=>setInput(e.target.value)}  />
 </div>
 <div style={{width:'50%'}}>
 <label>Output:</label>
@@ -91,4 +92,4 @@ const Submit=(props)=>{
  )
 }
 
-export {ans, Submit};
+export {answer, Submit};

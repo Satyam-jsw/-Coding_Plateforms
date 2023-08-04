@@ -15,7 +15,7 @@ const Schema=mongoose.Schema({
         type:String,
         required:true
     },
-    hsitory:[{
+    history:[{
       no:{
         type:Number
       },
@@ -23,6 +23,9 @@ const Schema=mongoose.Schema({
         type:String
       },
       status:{
+        type:String
+      },
+      code:{
         type:String
       }
     }],

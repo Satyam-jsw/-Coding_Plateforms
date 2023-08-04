@@ -5,36 +5,36 @@ import {NavLink,useNavigate} from 'react-router-dom';
 
 let Home=()=>{
     const navigate=useNavigate();
-       const [qus,fques]=useState([]);
-       let [name,fname]=useState('');
-       let [email,femail]=useState('');
-       let [address,faddress]=useState('');
-       let [college,fcollege]=useState('');
-       let [attempted,fattempted]=useState('');
-       let [solved,fsolved]=useState('');
+       const [question,setQuestion]=useState([]);
+       let [name,setName]=useState('');
+       let [email,setEmail]=useState('');
+       let [address,setAddress]=useState('');
+       let [college,setCollege]=useState('');
+       let [attempted,setAttempted]=useState(0);
+       let [solved,setSolved]=useState(0);
        const fun=async ()=>{
-        const res=await fetch('/home',{
+        const response=await fetch('/home',{
             method:"GET",
             headers:{
              'Content-Type':'Application/json',
              'Access-Control-Allow-Origin':'*'
             }
         });
-        let data=await res.json();
-        fname(data.name);
-        femail(data.email);
-        faddress(data.address);
-        fcollege(data.college);
-        fsolved(data.soleved);
-        fattempted(data.attempted);
-        if(data.msg!=''){
-        Window.alert(data.msg);
+        let data=await response.json();
+        setName(data.name);
+        setEmail(data.email);
+        setAddress(data.address);
+        setCollege(data.college);
+        setSolved(data.solved);
+        setAttempted(data.attempted);
+        if(data.messageToUser!=''){
+        Window.alert(data.messageToUser);
     navigate('/login')}
-        let arr=[{no:1,}];
+        let arr=[];
         for(let i in data.history){
           arr.push(i);
         }
-        fques(arr);
+        setQuestion(data.history);
        };
        
        useEffect(()=>{
@@ -58,7 +58,7 @@ let Home=()=>{
                         </a>
                     </li>
                     <li className="nav-item">
-                        <a href="#profile-followers" className="nav-link active" data-toggle="tab">
+                        <a href="#profile-post" className="nav-link" data-toggle="tab">
                             <div className="nav-field">Solved</div>
                             <div className="nav-value">{solved}</div>
                         </a>
@@ -78,9 +78,10 @@ let Home=()=>{
                 </div>
             </div>
            { 
-           qus.map((val,i)=>
+           question.map((val,i)=>
             (
             <div className="profile-content">
+            
                 <div className="prb">
                     <h4 className="prb1">{val.no}</h4>
                     <h3 className="prb2">{val.name}</h3>

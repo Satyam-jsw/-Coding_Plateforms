@@ -5,8 +5,8 @@ import { q } from './Problems';
 import {Submit} from './Submit';
 const Problem = (props) => {
   const [question,setQuestion] = useState({});
-  const [input,finput]=useState([0]);
-  const [output,foutput]=useState([0]);
+  const [input,setInput]=useState([0]);
+  const [output,setOutput]=useState([0]);
   const ques = async () => { 
 
     let val={no:q};
@@ -24,8 +24,8 @@ const Problem = (props) => {
       const data = await res.json();
       console.log(data);
       setQuestion(data);
-    finput(data.input);
-    foutput(data.output);
+    setInput(data.input);
+    setOutput(data.output);
       if(!res.status === 200) {
         const error = new Error(res.error);
         throw error;
@@ -44,22 +44,22 @@ const Problem = (props) => {
     <div id="id1">
         <div className = "div1">
             <label></label>
-          <h2 id = "h2"><pre>{question.qid}. {question.qtitle}</pre></h2>
+          <h2 id = "h2"><pre>{question.question_id}. {question.question_title}</pre></h2>
           <div id = "question area">
-           {question.qdesc}
+           {question.question_description}
           </div>
           
           <div className='input'>
                 <label>INPUT:</label>
-                <pre>{question.inputf}</pre>
+                <pre>{question.input_description}</pre>
           </div>
           <label>CONSTRAINTS:</label>
                 <div id = "constraints">
-                <pre>{question.const}</pre>
+                <pre>{question.constraints}</pre>
                 </div>
           <label >OUTPUT:</label>
                 <div >
-                <pre>{question.outputf}</pre>
+                <pre>{question.output_description}</pre>
                 </div>
           <label>Sample Input</label>
                 <div id = "input1">
