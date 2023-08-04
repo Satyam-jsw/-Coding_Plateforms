@@ -27,6 +27,7 @@ let Home=()=>{
         setCollege(data.college);
         setSolved(data.solved);
         setAttempted(data.attempted);
+           
         if(data.messageToUser!=''){
         Window.alert(data.messageToUser);
     navigate('/login')}
@@ -40,6 +41,7 @@ let Home=()=>{
        useEffect(()=>{
         fun();
       },[]);
+    
     return (
        <>
        <div className="container">
