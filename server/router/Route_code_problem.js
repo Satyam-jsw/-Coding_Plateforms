@@ -238,11 +238,13 @@ router.post('/sendq', async (req, res) => {
 router.get('/qlist', async (req, res) => {
   try 
   {
+    console.log('hello');
     const data = await Que.find().select({ _id: false, question_id: true, question_title: true, question_level: true, acceptance_rate: true });
     res.json(data);
   } 
   catch (e) 
   {
+    res.json("hello!.not found")
   }
 })
 
