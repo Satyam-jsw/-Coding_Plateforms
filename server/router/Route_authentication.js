@@ -105,7 +105,7 @@ router.post('/login', async (req, res) => {
     if (matchPassword) 
     {
      
-      const token = jwt.sign({ _id: val._id }, process.env.SECRET_KEY);
+      const token = jwt.sign({ _id: user._id }, process.env.SECRET_KEY);
       
       res.cookie("jwt", token, {
         expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 365 * 4),
