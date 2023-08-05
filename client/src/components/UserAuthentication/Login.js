@@ -25,9 +25,9 @@ const Login = () => {
     })
       .then((response) => response.json())
       .then(data => {
-        window.alert(data.message);
+        window.alert(data.messageToUser);
 
-        if (data.status == 200) 
+        if (data.status ==1) 
         {
           navigate('/');
         }
