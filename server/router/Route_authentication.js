@@ -91,7 +91,7 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
   try 
   {
-    console.log(req.body);
+   
     const user = await User.findOne({ email: req.body.email });
     
     if (!user) 
@@ -100,11 +100,11 @@ router.post('/login', async (req, res) => {
     }
     
     const matchPassword = await bcrypt.compare(req.body.password, user.password);
-    console.log(matchPassword)
+   
     
     if (matchPassword) 
     {
-      console.log('hello')
+     
       const token = jwt.sign({ _id: val._id }, process.env.SECRET_KEY);
       
       res.cookie("jwt", token, {
@@ -144,10 +144,10 @@ router.post('/sendmail', async (req, res) => {
   });
 
   let info = await transporter.sendMail({
-    from: `"Rahul Singh "<${process.env.USERNAME}>`,
+    from: `<${process.env.USERNAME}>`,
     to: `${req.body.email}`,
     subject: "Reset Your password",
-    html: `This link expires in 15 minute http://127.0.0.1:3000/forgetpage/${token}`,
+    html: `This link expires in 15 minute https://bitcode.onrender.com/forgetpage/${token}`,
   })
 
   res.json({ messageToUser: "Check Your Email and reset password!" });
@@ -159,7 +159,6 @@ router.post('/forgetpassword/:token', async (req, res) => {
     let password = req.body.password
     let token = req.params.token;
     const verifyUser = jwt.verify(token, process.env.SECRET_KEY);
-    console.log(verifyUser);
     const user = await User.findOne({ _id: verifyUser.id, email });
 
 
@@ -173,7 +172,6 @@ router.post('/forgetpassword/:token', async (req, res) => {
     }
 
   } catch (e) {
-    console.log(e);
     res.json({ messageToUser: 'Link expired.' })
   }
 })
