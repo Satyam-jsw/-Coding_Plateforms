@@ -43,7 +43,7 @@ router.post('/add', async (req, res) => {
       question_description: req.body.question_description,
       question_topic:req.body.question_topic,
       question_level: req.body.question_level,
-      acceptance_rate: req.body.acceptance_rate,
+      acceptance_rate: 0,
       constraints: req.body.constraints,
       input_description: req.body.input_description,
       output_description: req.body.output_description
