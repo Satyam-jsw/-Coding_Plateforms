@@ -209,17 +209,17 @@ router.post('/input', async (req, res) => {
   try 
   {
     const no = req.body.id;
-    let data = await Que.find({ question_id: no });
-    let input = data[0].input;
-    let output = data[0].output;
+  
+    let data = await Que.findOne({ question_id: no });
+    let input = data.input;
+    let output = data.output;
     let input1 = req.body.input;
     let output1 = req.body.output;
 
-    input = input.concat(input1);
+     input = input.concat(input1);
     output = output.concat(output1);
-    data[0].input = input;
-    data[0].output = output;
-    let c = await Que.findOneAndUpdate({ question_id: no }, data[0], { new: 1 });
+   
+    let c = await Que.findOneAndUpdate({ question_id: no },{$set:{input,output}});
     res.json({ messageToUser: 1 })
   } 
   catch (e)
