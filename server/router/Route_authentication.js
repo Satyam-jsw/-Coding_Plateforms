@@ -91,33 +91,35 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
   try 
   {
-    console.log(req.body);
     const user = await User.findOne({ email: req.body.email });
-    
     if (!user) 
     {
-      return res.json({ status: 0, messageToUer: "Yor are not registered" });
+      return res.json({ status: 0, messageToUser: "Yor are not registered" });
     }
     
     const matchPassword = await bcrypt.compare(req.body.password, user.password);
-    console.log(matchPassword)
+    console.log(matchPassword);
     
     if (matchPassword) 
     {
-      console.log('hello')
-      const token = jwt.sign({ _id: val._id }, process.env.SECRET_KEY);
+      
+      const token = jwt.sign({ _id: user._id }, process.env.SECRET_KEY);
+      const tokenObj=await User.findOne({_id:user._id}).select({tokens:true});
+      const tokenInDb=tokenObj.tokens;
+      tokenInDb.push({token});
+      await User.findOneAndUpdate({_id:user._id},{$set:{tokens:tokenInDb}})
       
       res.cookie("jwt", token, {
         expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 365 * 4),
         httpOnly: true
       });
-    
-      return res.json({ status: 0, messageToUser: "You are logged in" });
+     
+      return res.json({ status: 1, messageToUser: "You are logged in" });
 
     }
     res.json({ status: 0, messageToUser: "invalid details" })
   } 
-  catch (e) 
+  catch(e) 
   {
     res.json({ status: 0, messageToUser: "invalid details" });
   }
@@ -125,13 +127,20 @@ router.post('/login', async (req, res) => {
 });
 
 router.post('/sendmail', async (req, res) => {
-  const id = await User.findOne({ email: req.body.email }).select({ _id: 1 })
+  try
+  {
+  let idAndtoken = await User.findOne({ email: req.body.email }).select({ _id: 1 ,tokens:1});
+ 
+  const id=idAndtoken._id;
+  let tokenInDb=idAndtoken.tokens;
 
   if (!id) 
   {
     return res.json({ messageToUser: "Your are not registered!" })
   }
-  const token = jwt.sign({ id: id._id }, process.env.SECRET_KEY, { expiresIn: '1500s' });
+  const token = jwt.sign({ id: id }, process.env.SECRET_KEY, { expiresIn: '600s' });
+
+  await User.findOneAndUpdate({_id:id},{$set:{tokens:tokenInDb}});
 
   const transporter = await nodemailer.createTransport({
     service: 'gmail',
@@ -147,10 +156,15 @@ router.post('/sendmail', async (req, res) => {
     from: `"Rahul Singh "<${process.env.USERNAME}>`,
     to: `${req.body.email}`,
     subject: "Reset Your password",
-    html: `This link expires in 15 minute http://127.0.0.1:3000/forgetpage/${token}`,
+    html: `This link expires in 10 minute http://127.0.0.1:3000/forgetpage/${token}`,
   })
 
   res.json({ messageToUser: "Check Your Email and reset password!" });
+  }
+  catch(e)
+  {
+    res.json({ messageToUser: "details are not correct." });
+  }
 })
 
 router.post('/forgetpassword/:token', async (req, res) => {
@@ -158,24 +172,50 @@ router.post('/forgetpassword/:token', async (req, res) => {
     let email = req.body.email;
     let password = req.body.password
     let token = req.params.token;
-    const verifyUser = jwt.verify(token, process.env.SECRET_KEY);
-    console.log(verifyUser);
-    const user = await User.findOne({ _id: verifyUser.id, email });
-
-
-    if (!user) {
-      res.json({ messageToUser: 'user not found' })
-    }
-    else {
+    const tokenObj=await User.findOne({email}).select({tokens:true});
+   const tokenInDb=tokenObj.tokens;
+   
+  for(let i=0;i<tokenInDb.length;i++)
+  if(tokenInDb[i].token==token)
+  {
+    const verifyUser = jwt.verify(token, process.env.SECRET_KEY); 
+    const newTokenInDb= tokenObj.tokens.filter((value)=> {return value.token!=token});
+  
       password = await bcrypt.hash(password, 12);
-      await User.findOneAndUpdate({ _id: verifyUser.id }, { $set: { password: password } });
-      res.json({ messageToUser: 'Password reset successfully.' });
-    }
+      await User.findOneAndUpdate({ _id: verifyUser.id }, { $set: {password: password, tokens:newTokenInDb} });
+      return res.json({ messageToUser: 'Password reset successfully.' });
+  }
 
+    res.json({messageToUser:'Link has expired !'})
   } catch (e) {
-    console.log(e);
-    res.json({ messageToUser: 'Link expired.' })
+    
+    res.json({ messageToUser: 'Link has expired ' })
   }
 })
+
+//logout for user
+router.delete('/logout',async(req,res)=>{
+  try
+  {
+     const cookie=req.cookies.jwt;
+     const token= jwt.verify(cookie,process.env.SECRET_KEY)
+     res.clearCookie('jwt');
+
+     const id=token._id;
+     const tokenObj=await User.findOne({_id:id}).select({tokens:true});
+     
+
+     const newTokenInDb= tokenObj.tokens.filter((value)=> {return cookie!=value.token});
+    
+     await User.findOneAndUpdate({_id:id},{$set:{tokens:newTokenInDb}});
+
+     res.json({status:1,messageToUser:'You are logout'});
+  }
+  catch(e)
+  {
+    
+     res.json({status:0,messageToUser:'You are not logout'});
+  }
+});
 
 module.exports = router;

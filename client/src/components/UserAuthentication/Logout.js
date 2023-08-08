@@ -16,15 +16,15 @@ const Logout = () => {
             }
         });
         const data = await res.json();
-        if (res.status != 200) 
+        if (data.status==0) 
         {
-            navigate('/logout');
-            throw new Error(res.error);
+            window.alert(data.messageToUser);
         }
         else 
         {
             // dispatch({type:"USER",payload:false});
             navigate('/login');
+            window.alert(data.messageToUser);
         }
     }
     useEffect(() => {

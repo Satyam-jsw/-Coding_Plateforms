@@ -29,21 +29,25 @@ router.post('/test', async (req, res) => {
   constraints,input_description,output_description}*/
 
 router.post('/add', async (req, res) => {
+ 
   try 
   {
     const data = await Que.find().select({ question_id: true, _id: false });
-    let id = 0;
+    let id = -1;
+    data.sort();
     for (let i = 0; i < data.length; i++)
-      if (data[i].question_id > id)
-        id = data[i].question_id;
-    id = id + 1;
+      if (data[i].question_id !=i+1)
+        id=i+1;
+
+    if(id==-1)
+      id=1+data.length;
     const newQuestion = new Que({
       question_id: id,
       question_title: req.body.question_title,
       question_description: req.body.question_description,
       question_topic:req.body.question_topic,
       question_level: req.body.question_level,
-      acceptance_rate: req.body.acceptance_rate,
+      acceptance_rate: 0,
       constraints: req.body.constraints,
       input_description: req.body.input_description,
       output_description: req.body.output_description

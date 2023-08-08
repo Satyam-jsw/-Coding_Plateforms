@@ -1,9 +1,9 @@
 import React from "react";
 import { useState } from "react";
-import { id } from "./AddNewQuestion";
 
-let INPUT = () => {
 
+let INPUT = ({id}) => {
+    
     let [Id, setId] = useState(id);
     let [input, setInput] = useState([]);
     let [output, setOutput] = useState([]);
@@ -65,7 +65,7 @@ let INPUT = () => {
                     <textarea style={{ width: '40%' }} cols="1" rows="1" placeholder='' onChange={e => setId(e.target.value)}>{Id}</textarea>
                 </div>
                 <div style={{ width: '50%' }}>
-                    <label>Enter input numbers:</label>
+                    <label>Enter test cases numbers:</label>
                     <textarea style={{ width: '100%' }} cols="10" rows="3" placeholder='' onChange={e => setInputDummy(e.target.value)}>{inputDummy}</textarea>
                 </div>
                 <button type="submit" onClick={fun}>submit</button>

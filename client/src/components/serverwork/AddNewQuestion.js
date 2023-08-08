@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import INPUT from "./Addinput";
 import { useNavigate } from "react-router-dom";
-let id = 0;
+
 let Add = () => {
     const navigate = useNavigate();
 
-    const [question_id, setQuestion_id] = useState('');
+    const [question_title, setQuestion_title] = useState('');
     const [question_topic, setquestion_topic] = useState('');
     const [question_level, setQuestion_level] = useState('');
     const [acceptance_rate, setAcceptance_rate] = useState('');
@@ -13,12 +13,12 @@ let Add = () => {
     const [constraints, setConstraints] = useState('');
     const [input_description, setInput_description] = useState('');
     const [output_description, setOutput_description] = useState('');
-
+    const [id,setId]=useState(0);
     const addNewQuestion = async (val) => 
     {
         val.preventDefault();
-        const data = { question_id, question_level, acceptance_rate, question_description, question_topic, constraints, input_description, output_description };
-        console.log(data);
+        const data = { question_title, question_level, acceptance_rate, question_description, question_topic, constraints, input_description, output_description };
+        
 
         let response = await fetch('/add', {
             method: 'POST',
@@ -30,13 +30,10 @@ let Add = () => {
         })
 
         let result = await response.json();
-        id = result.no;
-        console.log(result);
-
+        setId(result.no);
         if (result.messageToUser === 1) 
         {
             window.alert("Your qusetion added Succesfully .");
-            navigate('/addinput')
         }
         else 
         {
@@ -51,7 +48,7 @@ let Add = () => {
             <from>
                 <div style={{ width: '50%' }}>
                     <label>Enter title..</label>
-                    <textarea style={{ width: '100%' }} cols="10" rows="5" placeholder='' onChange={e => setQuestion_id(e.target.value)} />
+                    <textarea style={{ width: '100%' }} cols="10" rows="5" placeholder='' onChange={e => setQuestion_title(e.target.value)} />
                 </div>
                 <div style={{ width: '50%' }}>
                     <label>Enter topic..</label>
@@ -79,9 +76,10 @@ let Add = () => {
                 </div>
                 <button type='submit' onClick={addNewQuestion}>Submit</button>
             </from>
-
+            <hr/>
+             <INPUT id={id}/>
         </div>
     )
 }
 
-export { id, Add };
+export {Add};
