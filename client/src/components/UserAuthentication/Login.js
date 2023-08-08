@@ -27,7 +27,7 @@ const Login = () => {
       .then(data => {
         window.alert(data.messageToUser);
 
-        if (data.status == 200) 
+        if (data.status ==1) 
         {
           navigate('/');
         }

@@ -25,8 +25,7 @@ const Schema=mongoose.Schema({
         required:true
        },
     acceptance_rate:{
-        type:Number,
-        required:true
+        type:Number
     },
     constraints:{
         type:String,
