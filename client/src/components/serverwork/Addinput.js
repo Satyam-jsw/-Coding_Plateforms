@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect ,PureComponent} from "react";
 import { useState } from "react";
 
 
-let INPUT = ({id}) => {
+let INPUT = (prop) => {
     
-    let [Id, setId] = useState(id);
+    let [Id, setId] = useState(0);
     let [input, setInput] = useState([]);
     let [output, setOutput] = useState([]);
     let [inputDummy, setInputDummy] = useState();
@@ -26,7 +26,7 @@ let INPUT = ({id}) => {
         setInput(inputArray);
         setOutput(outputArray);
 
-        let data = { input: input, output: output, id: Id };
+        let data = { input: input, output: output, id: prop.no };
 
         let res = await fetch('/input', {
             method: 'POST',
@@ -48,26 +48,49 @@ let INPUT = ({id}) => {
 
     let fun = (val) => {
         val.preventDefault();
-        let arr1 = []
+        let arr1 = [];
         for (let i = 0; i < inputDummy; i++)
             arr1.push('')
         setArr(arr1);
 
     }
-
-
-    return (
-        <div>
-
-            <form>
-                <div style={{ width: '50%' }}>
+   
+let Fun=()=>{
+    if(prop.no==0)
+    {
+       return(
+        <>
+         <div style={{ width: '50%' }}>
                     <label>Enter custom question number:</label>
-                    <textarea style={{ width: '40%' }} cols="1" rows="1" placeholder='' onChange={e => setId(e.target.value)}>{Id}</textarea>
-                </div>
-                <div style={{ width: '50%' }}>
+                    <textarea style={{ width: '40%' }} cols="1" rows="1" placeholder={''} onChange={e => setId(e.target.value)}>{}</textarea>
+         </div>
+         <div style={{ width: '50%' }}>
+                    <label>Enter test cases numbers:</label>
+                    <textarea style={{ width: '100%' }} cols="10" rows="3" placeholder='' onChange={e => setInputDummy(e.target.value)}>{inputDummy}</textarea>
+         </div>   
+        </>
+       )
+    }
+    else
+    {
+            return(
+             <>
+              <div style={{ width: '50%' }}>
+                    <label>Your question number:{prop.no}</label>
+              </div>
+              <div style={{ width: '50%' }}>
                     <label>Enter test cases numbers:</label>
                     <textarea style={{ width: '100%' }} cols="10" rows="3" placeholder='' onChange={e => setInputDummy(e.target.value)}>{inputDummy}</textarea>
                 </div>
+             </>
+            )
+    }
+}
+    return (
+        <div>
+            
+             <form>
+               <Fun/>
                 <button type="submit" onClick={fun}>submit</button>
             </form>
             <form>
