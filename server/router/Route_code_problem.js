@@ -147,7 +147,7 @@ router.post('/submit', async (req, res) => {
     //update question details in userdatabse.
     let historyArray = User.history;
     let attempted, solved, status;
-    console.log(historyArray.length);
+    
 
     if (historyArray.length == 0) 
     {
@@ -209,16 +209,15 @@ router.post('/input', async (req, res) => {
   try 
   {
     const no = req.body.id;
-  
     let data = await Que.findOne({ question_id: no });
     let input = data.input;
     let output = data.output;
     let input1 = req.body.input;
     let output1 = req.body.output;
 
-     input = input.concat(input1);
-    output = output.concat(output1);
-   
+     input = [...input,...input1];
+     output = [...output,...output1];
+     
     let c = await Que.findOneAndUpdate({ question_id: no },{$set:{input,output}});
     res.json({ messageToUser: 1 })
   } 
@@ -242,7 +241,7 @@ router.post('/sendq', async (req, res) => {
 router.get('/qlist', async (req, res) => {
   try 
   {
-    console.log('hello');
+    
     const data = await Que.find().select({ _id: false, question_id: true, question_title: true, question_level: true, acceptance_rate: true });
     res.json(data);
   } 
