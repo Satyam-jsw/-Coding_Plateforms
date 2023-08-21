@@ -49,11 +49,7 @@ let Add = () => {
     return (
         <div>
 
-<<<<<<< HEAD
-            {/* <form>
-=======
             <form>
->>>>>>> b1c0d2559f8d60736107956d9fde4b04027ae7d6
                 <div style={{ width: '50%' }}>
                     <label>Enter title..</label>
                     <textarea style={{ width: '100%' }} cols="10" rows="5" placeholder='' onChange={e =>setQuestion_title(e.target.value)} />
@@ -83,80 +79,6 @@ let Add = () => {
                     <textarea style={{ width: '100%' }} cols="10" rows="5" placeholder='' onChange={e => setOutput_description(e.target.value)} />
                 </div>
                 <button type='submit' onClick={addNewQuestion}>Submit</button>
-<<<<<<< HEAD
-            </form> */}
-                        <form>
-                <div className="form-row">
-                    <div className="left">
-                        <label>Enter Title</label>
-                        <input type="text" placeholder="" onChange={(e) => setQuestion_title(e.target.value)} />
-                    </div>
-                    <div className="right">
-                        <label>Choose Topic</label>
-
-                        <select onChange={(e) => setquestion_topic(e.target.value)}>
-                            <option value="Brute force">Brute force</option>
-                            <option value="Array">Array</option>
-                            <option value="sorting">sorting</option>
-                            <option value="Greedy">Greedy</option>
-                            <option value="Two Pointer">Two Pointer</option>
-                            <option value="Searching">Searching</option>
-                            <option value="Binary Search">Binary Search</option>
-                            <option value="Binary Tree">Binary Tree</option>
-                            <option value="BST">BST</option>
-                            <option value="Graph">Graph</option>
-                            <option value="Dynamic Programming">Dynamic Programming</option>
-                            <option value="Trie">Trie</option>
-                            <option value="Tree">Tree</option>
-                        </select>
-                    </div>
-                </div>
-                <div className="form-row">
-                    <label>Choose level of question</label>
-                    <select onChange={(e) => setQuestion_level(e.target.value)}>
-                        <option value="cakewalk">Cakewalk</option>
-                        <option value="easy">Easy</option>
-                        <option value="medium">Medium</option>
-                        <option value="hard">Hard</option>
-                    </select>
-                </div>
-                <div className="form-row">
-                    <label>Enter description of question</label>
-                    <textarea
-                        style={{ width: '100%', height: '100px', overflow: 'auto' }}
-                        placeholder=""
-                        onChange={(e) => setQuestion_description(e.target.value)}
-                    />
-                </div>
-                <div className="form-row">
-                    <label>Enter Constraints</label>
-                    <textarea
-                        style={{ width: '100%', height: '100px', overflow: 'auto' }}
-                        placeholder=""
-                        onChange={(e) => setConstraints(e.target.value)}
-                    />
-                </div>
-                <div className="form-row">
-                    <label>Enter input description</label>
-                    <textarea
-                        style={{ width: '100%', height: '100px', overflow: 'auto' }}
-                        placeholder=""
-                        onChange={(e) => setInput_description(e.target.value)}
-                    />
-                </div>
-                <div className="form-row">
-                    <label>Enter output description</label>
-                    <textarea
-                        style={{ width: '100%', height: '100px', overflow: 'auto' }}
-                        placeholder=""
-                        onChange={(e) => setOutput_description(e.target.value)}
-                    />
-                </div>
-                <div className="btna">
-                <button type='submit' onClick={addNewQuestion}>Submit</button>
-                </div>
-=======
->>>>>>> b1c0d2559f8d60736107956d9fde4b04027ae7d6
             </form>
 
             <hr/>
