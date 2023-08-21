@@ -60,6 +60,7 @@ let Fun=()=>{
     {
        return(
         <>
+<<<<<<< HEAD
         <form>
         <h1> Test Case Area </h1>
                    <div >
@@ -71,6 +72,16 @@ let Fun=()=>{
                    </div> 
                    </div>
         </form> 
+=======
+         <div style={{ width: '50%' }}>
+                    <label>Enter custom question number:</label>
+                    <textarea style={{ width: '40%' }} cols="1" rows="1" placeholder={''} onChange={e => setId(e.target.value)}>{}</textarea>
+         </div>
+         <div style={{ width: '50%' }}>
+                    <label>Enter test cases numbers:</label>
+                    <textarea style={{ width: '100%' }} cols="10" rows="3" placeholder='' onChange={e => setInputDummy(e.target.value)}>{inputDummy}</textarea>
+         </div>   
+>>>>>>> b1c0d2559f8d60736107956d9fde4b04027ae7d6
         </>
        )
     }
@@ -81,10 +92,17 @@ let Fun=()=>{
               <div style={{ width: '50%' }}>
                     <label>Your question number:{prop.no}</label>
               </div>
+<<<<<<< HEAD
               <div>
                         <label>Enter number of test cases </label>
                         <input  placeholder='' onChange={e => setInputDummy(e.target.value)} value={inputDummy} />
               </div> 
+=======
+              <div style={{ width: '50%' }}>
+                    <label>Enter test cases numbers:</label>
+                    <textarea style={{ width: '100%' }} cols="10" rows="3" placeholder='' onChange={e => setInputDummy(e.target.value)}>{inputDummy}</textarea>
+                </div>
+>>>>>>> b1c0d2559f8d60736107956d9fde4b04027ae7d6
              </>
             )
     }

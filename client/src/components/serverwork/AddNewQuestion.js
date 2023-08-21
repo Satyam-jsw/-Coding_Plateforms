@@ -49,7 +49,11 @@ let Add = () => {
     return (
         <div>
 
+<<<<<<< HEAD
             {/* <form>
+=======
+            <form>
+>>>>>>> b1c0d2559f8d60736107956d9fde4b04027ae7d6
                 <div style={{ width: '50%' }}>
                     <label>Enter title..</label>
                     <textarea style={{ width: '100%' }} cols="10" rows="5" placeholder='' onChange={e =>setQuestion_title(e.target.value)} />
@@ -79,6 +83,7 @@ let Add = () => {
                     <textarea style={{ width: '100%' }} cols="10" rows="5" placeholder='' onChange={e => setOutput_description(e.target.value)} />
                 </div>
                 <button type='submit' onClick={addNewQuestion}>Submit</button>
+<<<<<<< HEAD
             </form> */}
                         <form>
                 <div className="form-row">
@@ -150,6 +155,8 @@ let Add = () => {
                 <div className="btna">
                 <button type='submit' onClick={addNewQuestion}>Submit</button>
                 </div>
+=======
+>>>>>>> b1c0d2559f8d60736107956d9fde4b04027ae7d6
             </form>
 
             <hr/>
