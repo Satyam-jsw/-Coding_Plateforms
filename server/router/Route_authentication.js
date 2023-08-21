@@ -37,7 +37,7 @@ router.get('/home', async (req, res) => {
 });
 
 // do registration by user
-router.post('/toregister', async (req, res) => {
+router.post('/userregister', async (req, res) => {
   try
   {
     const user = await User.find({ email: req.body.email });
@@ -88,7 +88,7 @@ router.post('/toregister', async (req, res) => {
 });
 
 // for be logged in by user.
-router.post('/tologin', async (req, res) => {
+router.post('/userlogin', async (req, res) => {
   try 
   {
     const user = await User.findOne({ email: req.body.email });
@@ -194,7 +194,7 @@ router.post('/forgetpassword/:token', async (req, res) => {
 })
 
 //logout for user
-router.delete('/tologout',async(req,res)=>{
+router.delete('/userlogout',async(req,res)=>{
   try
   {
      const cookie=req.cookies.jwt;

@@ -73,7 +73,7 @@ const Comments = () => {
             {value.comments.map((value1,ind1)=>
              <>
              <label>@{value1.user_name}</label>
-             <p>{value1.comment}</p>
+             <pre>{value1.comment}</pre>
              <br/>
              </>
             )

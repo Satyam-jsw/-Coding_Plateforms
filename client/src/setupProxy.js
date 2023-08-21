@@ -44,21 +44,21 @@ module.exports = function (app) {
     })
   );
   app.use(
-    '/toregister',
+    '/userregister',
     createProxyMiddleware({
       target: url,
       changeOrigin: true,
     })
   )
   app.use(
-    '/tologin',
+    '/userlogin',
     createProxyMiddleware({
       target: url,
       changeOrigin: true,
     })
   )
   app.use(
-    '/tologout',
+    '/userlogout',
     createProxyMiddleware({
       target: url,
       changeOrigin: true,

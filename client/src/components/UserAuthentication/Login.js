@@ -14,7 +14,7 @@ const Login = () => {
 
     let data = { email, password };
 
-    fetch("/tologin", {
+    fetch("/userlogin", {
       method: "POST",
       headers: 
       {
@@ -80,14 +80,13 @@ const Login = () => {
                             <input type="checkbox" />Remember Me
                         </div>
                         <div className="form-group">
-                            <input type="submit" onClick={fun}  value="Login" className="btn float-right login_btn"/>
+                            <input type="mail" onClick={fun}  value="Login" className="btn float-right login_btn"/>
                         </div>
                     </form>
                 </div>
                 <div className="card-footer">
                     <div className="d-flex justify-content-center links ">
                         Don't have an account?
-                        {/* <a href="#"> Sign Up</a> */}
                         <Link to={"/register"}>Sign Up</Link>
                     </div>
                     <div className="d-flex justify-content-center links">

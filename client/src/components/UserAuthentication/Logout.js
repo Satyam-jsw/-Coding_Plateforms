@@ -9,7 +9,7 @@ const Logout = () => {
     const navigate = useNavigate();
     let fun = async () => {
 
-        const res = await fetch('/tologout', {
+        const res = await fetch('/userlogout', {
             method: 'DELETE',
             headers: {
                 'Contian-Type': 'application/json'
