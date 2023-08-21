@@ -1,0 +1,68 @@
+/* Apply styles to the entire form */
+form {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Style for form rows */
+  .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  
+  .left, .right {
+    flex: 1;
+    margin-right: 10px;
+  }
+  
+  /* Style for labels */
+  label {
+    display: block;
+    font-weight: bold;
+  }
+  
+  /* Style for text input and select */
+  input[type="text"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    transition: border-color 0.3s ease-in-out;
+  }
+  
+  /* Style for text input and select on hover */
+  input[type="text"]:hover,
+  select:hover,
+  textarea:hover {
+    border-color: rgb(234, 3, 192);
+  }
+  
+  /* Style for the Submit button */
+  .btna{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  /* Style for the Submit button on hover */
+  button[type="submit"]:hover {
+    background-color: #4d98e7;
+  }
+  

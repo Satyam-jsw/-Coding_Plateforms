@@ -44,14 +44,21 @@ module.exports = function (app) {
     })
   );
   app.use(
-    '/register',
+    '/toregister',
     createProxyMiddleware({
       target: url,
       changeOrigin: true,
     })
   )
   app.use(
-    '/login',
+    '/tologin',
+    createProxyMiddleware({
+      target: url,
+      changeOrigin: true,
+    })
+  )
+  app.use(
+    '/tologout',
     createProxyMiddleware({
       target: url,
       changeOrigin: true,
@@ -73,6 +80,20 @@ module.exports = function (app) {
   )
   app.use(
     '/home',
+    createProxyMiddleware({
+      target: url,
+      changeOrigin: true,
+    })
+  )
+  app.use(
+    '/discussion',
+    createProxyMiddleware({
+      target: url,
+      changeOrigin: true,
+    })
+  )
+  app.use(
+    '/thread',
     createProxyMiddleware({
       target: url,
       changeOrigin: true,

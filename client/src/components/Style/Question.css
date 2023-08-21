@@ -1,0 +1,88 @@
+.question-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .question-details {
+    flex: 1;
+  }
+  
+  .question-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .section-label {
+    font-weight: bold;
+  }
+  
+  .section-content {
+    white-space: pre-wrap;
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  /* Style for the output section */
+  .output-content {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #fff;
+    margin-top: 10px;
+  }
+  
+  /* Style for the sample input and output sections */
+  .sample-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .sample-input,
+  .sample-output {
+    flex-basis: calc(50% - 5px);
+    margin-top: 10px;
+  }
+  
+  /* Style for the language selector */
+  .language-selector {
+    margin-top: 20px;
+    text-align: right;
+  }
+  
+  #language-dropdown {
+    padding: 5px;
+  }
+  .btn_for_run_and_submit{
+    /* Define the styles for the button */
+
+    background-color: #2e81da; /* Background color when not hovered */
+    color: white; /* Text color when not hovered */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 6px rgba(34, 33, 33, 0.1); /* Shadow effect */
+  }
+  
+  /* Change background color and add shadow on hover */
+  .btn_for_run_and_submit:hover {
+    background-color: #2e2ee7; /* Background color on hover */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Increased shadow on hover */
+    transform: translateY(-2px); /* Add slight upward lift on hover */
+  
+  /* You can add more specific styles if needed */
+  
+  }
+  
+  /* Customize these styles further to match your design */
+  

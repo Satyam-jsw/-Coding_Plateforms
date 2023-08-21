@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 // import './css/home.css';
 import 'bootstrap/dist/css/bootstrap.css';
-
-import { NavLink, useNavigate } from 'react-router-dom';
+import '../Style/login.css'
+import {Link, NavLink, useNavigate } from 'react-router-dom';
 // import { UserContext } from '../App';
 const Login = () => {
   // const {state,dispatch}=useContext(UserContext);
@@ -14,7 +14,7 @@ const Login = () => {
 
     let data = { email, password };
 
-    fetch("/login", {
+    fetch("/tologin", {
       method: "POST",
       headers: 
       {
@@ -46,52 +46,58 @@ const Login = () => {
 
   }
 
-
   return (
     <>
-      <div className='login' >
-        <form method="POST" >
+     <div className="container ">
+        <div className="d-flex justify-content-center align-center h-100">
+            <div className="card">
+                <div className="card-header">
+                    <h3>Log In</h3>
+                    {/* <div className="d-flex justify-content-end social_icon">
+                        <span> <i className="fab fa-google-plus-square"></i> </span>
+                        <span><i className="fab fa-facebook-square"></i></span>
+                        <span><i className="fab fa-twitter-square"></i></span>
+                    </div> */}
+                </div>
 
-          <div className="form-outline mb-4">
-            <input type="email" id="form2Example1" className="form-control" value={email} onChange={(e) => { setEmail(e.target.value) }} />
-            <label className="form-label" >Email address</label>
-          </div>
-
-
-          <div className="form-outline mb-4">
-            <input type="password" id="form2Example2" autoComplete='password' className="form-control" value={password} onChange={(e) => { setPassword(e.target.value) }} />
-            <label className="form-label" >Password</label>
-          </div>
-
-
-          <div className="row mb-4">
-            <div className="col d-flex justify-content-center">
-              {/* <div className="form-check">
-        <input className="form-check-input" type="checkbox" value="" id="form2Example31" checked={false} />
-        <label className="form-check-label" > Remember me </label>
-      </div> */}
+                <div className="card-body">
+                    <form action="POST">
+                        <div className="input-group form-group">
+                            <div className="input-group-prepend">
+                                <span className="input-group-text">
+                                   <i className="fas fa-envelope"></i> </span>
+                            </div>
+                            <input type="email" className="form-control" onChange={(e) => { setEmail(e.target.value) }} placeholder="Email"/>
+                        </div>
+                        <div className="input-group form-group">
+                            <div className="input-group-prepend">
+                                <span className="input-group-text">
+                                   <i className="fas fa-key"></i> </span>
+                            </div>
+                            <input type="password" className="form-control" onChange={(e) => { setPassword(e.target.value) }} placeholder="Password"/>
+                        </div>
+                        <div className="row align-items-center remember">
+                            <input type="checkbox" />Remember Me
+                        </div>
+                        <div className="form-group">
+                            <input type="submit" onClick={fun}  value="Login" className="btn float-right login_btn"/>
+                        </div>
+                    </form>
+                </div>
+                <div className="card-footer">
+                    <div className="d-flex justify-content-center links ">
+                        Don't have an account?
+                        {/* <a href="#"> Sign Up</a> */}
+                        <Link to={"/register"}>Sign Up</Link>
+                    </div>
+                    <div className="d-flex justify-content-center links">
+                     <Link to={"/forgetpage"}>Forgot your Password?</Link>
+                        {/* <a href="#">Forgot your Password?</a> */}
+                    </div>
+                </div>
             </div>
-
-            <div className="col">
-
-              <NavLink to="/forgetpass">Forgot password?</NavLink>
-            </div>
-          </div>
-
-
-          <button onClick={fun} type="submit" className="btn btn-primary btn-block mb-4">Sign in</button>
-
-
-          <div className="text-center">
-            <p>Not registered member<NavLink to="/register">Register</NavLink></p>
-            <p>or sign up with:</p>
-            <button type="button" className="btn btn-link btn-floating mx-1">
-              <i className="fab fa-facebook-f"></i>
-            </button>
-
-          </div>
-        </form>
-      </div>
+        </div>
+    </div>
     </>
   )
 }

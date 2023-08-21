@@ -1,0 +1,45 @@
+/* Style for the test case status container */
+.accp {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #9b9696;
+    border-radius: 5px;
+    margin-left: 20px;
+    background-color: #f5f5f5;
+  }
+  
+  /* Style for the status label */
+  .status-label {
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
+  /* Style for the test case labels */
+  .accq {
+    display: block;
+    margin-top: 5px;
+    font-size: 16px;
+  }
+  
+  /* Style for wrong test cases */
+  .wrong {
+    color: red;
+  }
+  
+  /* Style for accepted test cases */
+  .accept {
+    color: green;
+  }
+  
+  /* Style for the final answer border */
+  .final-answer-border {
+    width: 50%;
+    margin-top: 20px;
+    padding: 10px;
+    margin-left: 20px;
+    border: 1px solid #9b9696;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  

@@ -1,85 +1,92 @@
-import { useState, useEffect } from "react";
-import CommentForm from "./CommentForm";
-import './comm.css';
-import Comment from "./Comment";
-import {
-    getComments as getCommentsApi,
-    createComment as createCommentApi,
-    updateComment as updateCommentApi,
-    deleteComment as deleteCommentApi,
-} from "../api";
+import React from 'react'
+import './comm.css'
+import { useState,useEffect } from 'react'
+import { json, useParams } from 'react-router-dom'
 
-const Comments = ({ commentsUrl, currentUserId }) => {
-    const [backendComments, setBackendComments] = useState([]);
-    const [activeComment, setActiveComment] = useState(null);
-    const rootComments = backendComments.filter(
-        (backendComment) => backendComment.parentId === null
-    );
-    const getReplies = (commentId) =>
-        backendComments
-            .filter((backendComment) => backendComment.parentId === commentId)
-            .sort(
-                (a, b) =>
-                    new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
-            );
-    const addComment = (text, parentId) => {
-        createCommentApi(text, parentId).then((comment) => {
-            setBackendComments([comment, ...backendComments]);
-            setActiveComment(null);
-        });
-    };
-
-    const updateComment = (text, commentId) => {
-        updateCommentApi(text).then(() => {
-            const updatedBackendComments = backendComments.map((backendComment) => {
-                if (backendComment.id === commentId) {
-                    return { ...backendComment, body: text };
-                }
-                return backendComment;
-            });
-            setBackendComments(updatedBackendComments);
-            setActiveComment(null);
-        });
-    };
-    const deleteComment = (commentId) => {
-        if (window.confirm("Are you sure you want to remove comment?")) {
-            deleteCommentApi().then(() => {
-                const updatedBackendComments = backendComments.filter(
-                    (backendComment) => backendComment.id !== commentId
-                );
-                setBackendComments(updatedBackendComments);
-            });
+const Comments = () => {
+  let [user_name,setName]=useState('');
+  const  user=async ()=>{
+    const response=await fetch('/home',{
+        method:"GET",
+        headers:{
+         'Content-Type':'Application/json',
+         'Access-Control-Allow-Origin':'*'
         }
-    };
+    });
+    let data=await response.json();
+    setName(data.name);
+  }
+  
+  const [blog,setBlog] = useState([]);
+  const [comment,setnewComment]=useState('');
+  const [post,setnewPost]=useState('');
+  const fun = async () => {
+    const response = await fetch('/discussion',{
+      method:"GET",
+      headers:{
+       'Content-Type':'Application/json',
+       'Access-Control-Allow-Origin':'*'
+      }
+    });
+    let data = await response.json();
+    setBlog(data);
+    
+  }
+ let commenting=async(e)=>{
+      e.preventDefault();
+     const id=e.target.id;
+     let response=await fetch('/thread',{
+      method:"POST",
+      headers:{
+       'Content-Type':'Application/json',
+       'Access-Control-Allow-Origin':'*'
+      },
+      body:JSON.stringify({id,user_name,post,comment})
+  });
+  let data = await response.json();
+  setBlog(data);
+  setnewComment('');
+  setnewPost('');
 
-    useEffect(() => {
-        getCommentsApi().then((data) => {
-            setBackendComments(data);
-        });
-    }, []);
+ }
 
-    return (
-        <div className="comments">
-            {/* <h3 className="comments-title">Comments</h3> */}
-            <div className="comment-form-title"> Comment Here</div>
-            <CommentForm submitLabel="Write" handleSubmit={addComment} />
-            <div className="comments-container">
-                {rootComments.map((rootComment) => (
-                    <Comment
-                        key={rootComment.id}
-                        comment={rootComment}
-                        replies={getReplies(rootComment.id)}
-                        activeComment={activeComment}
-                        setActiveComment={setActiveComment}
-                        addComment={addComment}
-                        deleteComment={deleteComment}
-                        updateComment={updateComment}
-                        currentUserId={currentUserId}
-                    />
-                ))}
-            </div>
-        </div>
-    );
-};
+  useEffect(() => {
+    fun();
+    user();
+  },[]);
 
-export default Comments;
+  return (
+    <>
+    <h1>Add new post</h1>
+    <form>
+    <textarea placeholder='Write post here..!' value={post} onChange={(e)=>setnewPost(e.target.value)}></textarea>
+    <button  onClick={commenting}>add blog</button>
+    </form>
+      {
+        blog.map((value,ind)=>
+            <>
+            <h2>{value.Uname}</h2>
+            <p>{value.post}</p>
+            <hr/>
+            comments
+            <br/>
+            {value.comments.map((value1,ind1)=>
+             <>
+             <label>@{value1.user_name}</label>
+             <p>{value1.comment}</p>
+             <br/>
+             </>
+            )
+            }
+             <form>
+            <textarea placeholder='comment here..!' onChange={(e)=>setnewComment(e.target.value)}></textarea>
+            <button id={value._id} onClick={commenting}>comment</button>
+            </form>
+            </>
+        )
+      }
+    </>
+  )
+}
+
+export default Comments

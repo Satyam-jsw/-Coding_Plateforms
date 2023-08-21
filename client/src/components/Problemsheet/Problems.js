@@ -3,11 +3,14 @@ import ReactPaginate from 'react-paginate';
 import { NavLink } from 'react-router-dom';
 import "../../App.css";
 import 'bootstrap'
+import '../Style/problems.css'
 import Problem from './Question';
 import Acc from './testCaseStatus';
 let q = 0;
 const Question = (props) => 
 {
+  let setq=function(){};
+  [q,setq]=useState(0)
   const difficulty = props.difficulty;
   const cnt = props.id;
   var classId = "";
@@ -24,10 +27,9 @@ const Question = (props) =>
 
   return (
     <tr className={classId}>
-      <td><NavLink className="nav-link active" >{props.question_id}</NavLink></td>
-      <td><NavLink className="nav-link active" to="/problem" onClick={() => { q = props.question_id }} >{props.question_title}</NavLink></td>
+      <th scope="row"><NavLink className="nav-link active" >{props.question_id}</NavLink></th>
+      <td><NavLink className="nav-link active" to={`/problem/${props.question_id}`} onClick={() => {setq(props.question_id) }} >{props.question_title}</NavLink></td>
       <td>{props.question_level}</td>
-      <td>{props.acceptance_rate}</td>
     </tr>
   );
 }
@@ -35,66 +37,64 @@ const Question = (props) =>
 
 const Problemsheet = () => {
   const [question, setQuestion] = useState([]);
+  const [search,setSearch] = useState('');
+  const [filteredquestion,setFilteredquestion]=useState([]);
+
+const handleChange = (e)=>{
+  const searchTerm = e.target.value.toLowerCase();
+  setSearch(searchTerm);
+  
+};
+useEffect(() => {
+  const arr = question.filter((ques) => {
+    return ques.question_title.toLowerCase().includes(search.toLowerCase());
+  });
+  setFilteredquestion(arr);
+  
+}, [search, question]);
 
   let fun = async () => {
     let response = await fetch('/qlist');
     let data = await response.json();
-    
     setQuestion(data);
-    console.log(question);
   };
   useEffect(() => {
     fun();
   }, []);
 
-  // const handlePageClick = event => {
-  //   const selected = event.selected;
-  //   const offset = selected * pagination.numberPerPage
-  //   setPagination({ ...pagination, offset })
-  // }
-  // const [pagination, setPagination] = useState({
-  //   data: question,
-  //   offset: 0,
-  //   numberPerPage: 10,
-  //   pageCount: 0,
-  //   currentData: []
-  // });
-  // useEffect(() => {
-  //   setPagination((prevState) => ({
-  //     ...prevState,
-  //     pageCount: prevState.data.length / prevState.numberPerPage,
-  //     currentData: prevState.data.slice(pagination.offset, pagination.offset + pagination.numberPerPage)
-  //   }))
-  // }, [pagination.numberPerPage, pagination.offset]);
-
+ 
 
   return (
     <>
-
+      
       <div className='container-fluid'>
-        <div className='container table-mid'>
+      <div className="search" style={{backgroundColor:"transparent"}}>
+                <form> 
+                  <input className="form-control mr-sm-2" type="text" onChange={handleChange} placeholder='Search'/>
+                </form>
+          </div>
+        <div className='container table'>
           <table className='table table-striped table-dark  table-responsive  '>
             <thead>
               <tr>
-                <th>S.No</th>
-                <th>Problem</th>
-                <th>
-                  Level
-                </th>
-                <th>
-                  Acceptance
-                </th>
+                <th scope="col">Problem Id</th>
+                <th scope="col">Problem</th>
+                <th scope="col">Level</th>
               </tr>
             </thead>
             <tbody>
-              {question.map((value, ind) => <Question question_id={value.question_id}
-                question_title={value.question_title} question_level={value.question_level} acceptance_rate={value.acceptance_rate} />
-              )}
-            </tbody>
+                  {filteredquestion.map((value) => (
+                    <Question
+                      question_id={value.question_id}
+                      question_title={value.question_title}
+                      question_level={value.question_level}
+                    />
+                  ))}
+                </tbody>
           </table>
         </div>
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-          {/* <ReactPaginate
+        {/* <div style={{ display: 'flex', justifyContent: 'center' }}>
+           <ReactPaginate
       previousLabel={'Previous'}
       nextLabel={'Next'}
       breakLabel={'...'}
@@ -106,11 +106,11 @@ const Problemsheet = () => {
       activeClassName={'active'}
       subContainerClassName={'pages pagination'} 
      
-    /> */}
-        </div>
+    /> 
+        </div> */}
       </div>
     </>
   )
 }
 
-export { q, Problemsheet }
+export default Problemsheet ;

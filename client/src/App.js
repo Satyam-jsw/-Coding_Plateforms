@@ -1,6 +1,6 @@
 import './App.css';
 import { Route,Routes } from 'react-router-dom';
-import {Problemsheet} from './components/Problemsheet/Problems';
+import Problemsheet from './components/Problemsheet/Problems';
 import Problem from './components/Problemsheet/Question';
 import Navbar from './components/Navbar';
 import Comments from './components/Disscusion/Comments';
@@ -23,8 +23,8 @@ function App() {
     <Routes>
       <Route path='/' element={<Home/>}/>
       <Route path='/problemsheet' element={<Problemsheet/>}/>
-      <Route path='/problem' element={<Problem/>}/>
-      <Route path='/discussion' element={<Comments/>}/> 
+      <Route path='/problem/:number' element={<Problem/>}/>
+      <Route path='/discuss' element={<Comments/>}/> 
       <Route path='/addnq' element={<Add/>}/>
       <Route path='/addinput' element={<INPUT/>}/>
       <Route path='/accp' element={<Acc/>}/>

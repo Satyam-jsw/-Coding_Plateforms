@@ -1,15 +1,18 @@
 import React, { useEffect } from 'react';
 import "../../App.css";
 import { useState } from 'react';
-import { q } from './Problems';
 import {Submit} from './Submit';
+import '../Style/Question.css'
+import { useParams } from 'react-router-dom';
+
 const Problem = (props) => {
   const [question,setQuestion] = useState({});
   const [input,setInput]=useState([0]);
   const [output,setOutput]=useState([0]);
+  const { number } = useParams();
   const ques = async () => { 
-
-    let val={no:q};
+ 
+    let val={no:number};
     try {
        
       const res = await fetch("/sendq", {
@@ -22,7 +25,6 @@ const Problem = (props) => {
       });
 
       const data = await res.json();
-      console.log(data);
       setQuestion(data);
     setInput(data.input);
     setOutput(data.output);
@@ -41,39 +43,52 @@ const Problem = (props) => {
 
   return (
     
-    <div id="id1">
-        <div className = "div1">
-            <label></label>
-          <h2 id = "h2"><pre>{question.question_id}. {question.question_title}</pre></h2>
-          <div id = "question area">
-           {question.question_description}
-          </div>
-          
-          <div className='input'>
-                <label>INPUT:</label>
-                <pre>{question.input_description}</pre>
-          </div>
-          <label>CONSTRAINTS:</label>
-                <div id = "constraints">
-                <pre>{question.constraints}</pre>
-                </div>
-          <label >OUTPUT:</label>
-                <div >
-                <pre>{question.output_description}</pre>
-                </div>
-          <label>Sample Input</label>
-                <div id = "input1">
-                <pre>{input[0]}</pre>
-                </div>
-          <label>Sample Output</label>
-                <div id = "output1">
-                <pre>
-                {output[0]}
-                </pre>
-                 </div>
-         </div>
-         <Submit p1={q} p2={input[1]}/>
+    <div id="id1" className="question-container">
+  <div className="question-details">
+    <h2 className="question-title">
+      {question.question_id}. {question.question_title}
+    </h2>
+    <div className="question-description">
+      {question.question_description}
     </div>
+
+    <div className="input-section">
+      <label className="section-label">INPUT:</label>
+      <pre className="section-content">{question.input_description}</pre>
+    </div>
+
+    <div className="constraints-section">
+      <label className="section-label">CONSTRAINTS:</label>
+      <pre className="section-content">{question.constraints}</pre>
+    </div>
+
+    <div className="output-section">
+      <label className="section-label">OUTPUT:</label>
+      <div className="output-content">
+        <pre>{question.output_description}</pre>
+      </div>
+    </div>
+
+    <div className="sample-section">
+      <div className="sample-input">
+        <label className="section-label">Sample Input:</label>
+        <pre className="section-content">{input[0]}</pre>
+      </div>
+
+      <div className="sample-output">
+        <label className="section-label">Sample Output:</label>
+        <pre className="section-content">{output[0]}</pre>
+      </div>
+    </div>
+
+    <Submit p1={number} p2={input[1]} />
+  </div>
+
+ 
+</div>
+
+
+
   )
 }
 

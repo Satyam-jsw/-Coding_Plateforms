@@ -20,7 +20,8 @@ app.use(
 //import all router
 app.use(require('./router/Route_authentication'));
 app.use(require('./router/Route_code_problem'));
-
+app.use(require("./router/Route_discussion"));
   app.listen(port,()=>{
     console.log(port);
    });
+   

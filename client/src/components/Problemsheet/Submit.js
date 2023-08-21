@@ -54,40 +54,46 @@ const Submit=(props)=>{
      }
     
     return(
-        <>
-        <div>
-   <form>
-   <div id = "div2">
-    <textarea  cols="20" rows="20" placeholder='Type your code here' onChange={e=>setCode(e.target.value)}></textarea> 
-  </div>
-<select className="form-select form-select-sm sum" aria-label=".form-select-sm example" onClick={e=>setLan(e.target.value)}>
-  <option selected>Select language</option>
-  <option value="java">Java</option>
-  <option value="py" >Python	</option>
-  <option value="cpp" >C++	</option>
-  <option value="c" >C</option>
-  <option value="go" >GoLang</option>
-  <option value="cs">C#</option>
-  <option value="js">NodeJs</option>
-</select>
-<pre>        </pre>
-<button onClick={Run}>Run</button>
-<button onClick={submitCode}>Submit</button>
-<pre>        </pre>
-<div style={{width:'50%'}}>
-<label>Custom Input:</label>
-<textarea style={{width:'100%'}} cols="10" rows="5" placeholder='Enter Input here..' onChange={e=>setInput(e.target.value)}  />
-</div>
-<div style={{width:'50%'}}>
-<label>Output:</label>
-<pre style={{width:'100%'}} cols="10" rows="5">{output}</pre>
-</div>
+      <>
+      <div>
+        <form>
 
-</form>
-</div>
+          <div style={{ marginBottom: '10px', width: '30%' }}>
+            <select className="form-select form-select-sm sum" aria-label=".form-select-sm example" onClick={e => setLan(e.target.value)}>
+              <option selected>Select language</option>
+              <option value="java">Java</option>
+              <option value="py" >Python	</option>
+              <option value="cpp" >C++	</option>
+              <option value="c" >C</option>
+              <option value="go" >GoLang</option>
+              <option value="cs">C#</option>
+              <option value="js">NodeJs</option>
+            </select>
+          </div>
+          <div id="div2">
+            <textarea cols="20" rows="20" placeholder='Type your code here' onChange={e => setCode(e.target.value)}></textarea>
+          </div>
+
+          <div >
+            <button onClick={Run} style={{ marginRight: '10px' }} className="btn_for_run_and_submit">Run</button>
+
+            <button onClick={submitCode} className="btn_for_run_and_submit" >Submit</button>
+
+          </div>
 
 
-</>
+          <div style={{ width: '50%' }}>
+            <label>Custom Input:</label>
+            <textarea style={{ width: '100%' }} cols="10" rows="5" placeholder='Enter input here' onChange={e => setInput(e.target.value)} />
+          </div>
+          <div style={{ width: '50%' }}>
+            <label>Output:</label>
+              <pre style={{ width: '100%' }} cols="10" rows="5">{output}</pre>
+          </div>
+
+        </form>
+      </div>
+    </>
 
  )
 }
