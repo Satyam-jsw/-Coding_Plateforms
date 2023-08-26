@@ -62,37 +62,22 @@ useEffect(() => {
           <table className='table table-striped table-dark  table-responsive'>
             <thead>
               <tr>
-                <th scope="col">Problem Id</th>
-                <th scope="col">Problem</th>
-                <th scope="col">Level</th>
-              </tr>
-            </thead>
-            <tbody>
-                  {filteredquestion.map((value) => (
-                    <Question
-                      question_id={value.question_id}
-                      question_title={value.question_title}
-                      question_level={value.question_level}
-                    />
-                  ))}
-                </tbody>
-          </table>
-        </div>
-        {/* <div style={{ display: 'flex', justifyContent: 'center' }}>
-           <ReactPaginate
-      previousLabel={'Previous'}
-      nextLabel={'Next'}
-      breakLabel={'...'}
-      pageCount={Math.ceil(pagination.pageCount)}
-      marginPagesDisplayed={2}
-      pageRangeDisplayed={5}
-      onPageChange={handlePageClick}
-      containerClassName={'pagination'}
-      activeClassName={'active'}
-      subContainerClassName={'pages pagination'} 
-     
-    /> 
-        </div> */}
+                  <th>Problem Id</th>
+                  <th>Problem</th>
+                  <th>Level</th>
+                  </tr>              
+              </thead>
+              <tbody>
+                    {filteredquestion.map((value) => (
+                      <Question
+                        question_id={value.question_id}
+                        question_title={value.question_title}
+                        question_level={value.question_level}
+                      />
+                    ))}
+                  </tbody>
+            </table>
+          </div>
       </div>
     </>
   )
