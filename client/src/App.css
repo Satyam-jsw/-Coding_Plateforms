@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 body{
   background-color: #ebeef4;
   margin-top:20px;
@@ -234,9 +232,7 @@ body{
 .prb3{
   margin-right:10% ;
   font-size: 2vw;
-=======
-=======
->>>>>>> 3df8477bbf6a6e67f4112399b10807607dc4b721
+
 .App {
   text-align: center;
 }
@@ -274,8 +270,4 @@ body{
   to {
     transform: rotate(360deg);
   }
-<<<<<<< HEAD
->>>>>>> 3df8477bbf6a6e67f4112399b10807607dc4b721
-=======
->>>>>>> 3df8477bbf6a6e67f4112399b10807607dc4b721
 }
