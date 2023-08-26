@@ -1,0 +1,45 @@
+.about{
+    overflow: visible !important;
+    height: auto;
+    border: solid;
+}
+.myprofile{
+    margin: 10px;
+    display: flex;
+}
+.ratio{
+    height: 100px;
+     width:100px !important;
+    border: solid;
+    border-radius: 100px;
+    background-image: linear-gradient(100deg,red,white);
+}
+
+.ratio2{
+    height: 50px !important;
+     width:50px !important;
+    border: solid;
+    border-radius: 100px;
+    position: relative;
+    top:24% !important;
+    left: 24% !important;
+    background-color: rgb(255, 255, 255);
+}
+
+.comm-hist{
+    display: flex;
+    flex-direction: row;
+    border: solid;
+}
+
+.history{
+    width: 50vw;
+}
+.comments{
+    margin: 0px;
+    width: 50vw;
+    border: solid;
+}
+.comm{
+    overflow: auto;
+}

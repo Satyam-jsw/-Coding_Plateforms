@@ -45,7 +45,11 @@ const Schema=mongoose.Schema({
       token:{
         type:String
       }
-    }]
+    }],
+    image:{
+      data: Buffer, 
+      contentType: String,
+    }
     })
 
 

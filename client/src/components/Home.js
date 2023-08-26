@@ -2,7 +2,7 @@ import React from "react";
 import '../App.css';
 import { useState,useEffect } from "react";
 import {NavLink,useNavigate} from 'react-router-dom';
-
+import './Style/Home.css'
 let Home=()=>{
     const navigate=useNavigate();
        const [question,setQuestion]=useState([]);
@@ -27,7 +27,6 @@ let Home=()=>{
         setCollege(data.college);
         setSolved(data.solved);
         setAttempted(data.attempted);
-           
         if(data.messageToUser!=''){
         Window.alert(data.messageToUser);
     navigate('/login')}
@@ -46,43 +45,51 @@ let Home=()=>{
        <>
        <div className="container">
     <div className="profile">
-        <div className="profile-header">
-            <div className="profile-header-cover"></div>
-            <div className="profile-header-content">
+        <div className="profile-header ">
+        <div className="profile-header-cover"></div>
+            <div className="profile-header-content about">
                 <div className="profile-header-img">
                     <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" />
                 </div>
                 <ul className="profile-header-tab nav nav-tabs nav-tabs-v2">
                     <li className="nav-item">
-                        <a href="#profile-post" className="nav-link" data-toggle="tab">
+                        
                             <div className="nav-field">Attempted</div>
                             <div className="nav-value">{attempted}</div>
-                        </a>
+    
                     </li>
                     <li className="nav-item">
-                        <a href="#profile-post" className="nav-link" data-toggle="tab">
+                        
                             <div className="nav-field">Solved</div>
                             <div className="nav-value">{solved}</div>
-                        </a>
                     </li>
                 </ul>
             </div>
         </div>
-       
-        <div className="profile-container">
+       </div>
+       <div >
+        <div className="profile-container myprofile">
             <div className="profile-sidebar">
-                <div className="desktop-sticky-top">
+                <div className="desktop-sticky-top ">
                     <h4>{name}</h4>
                     <div className="font-weight-600 mb-3 text-muted mt-n2">{email}</div>
-                    <div className="mb-1"><i className="fa fa-map-marker-alt fa-fw text-muted"></i> {address}</div>
-                    <div className="mb-3"><i className="fa fa-link fa-fw text-muted"></i>{college}</div>
-                    <hr className="mt-4 mb-4" />
+                    <div className="mb-1">{address}</div>
+                    <div className="mb-3">{college}</div>
+                    
                 </div>
             </div>
+            <div className="ratio">
+             <div className="ratio2">
+              <div className="ratio1"></div>
+             </div>
+            </div>
+            </div>
+            <div className="comm-hist">
+            <div className="history">
            { 
            question.map((val,i)=>
             (
-            <div className="profile-content">
+            <div className="">
             
                 <div className="prb">
                     <h4 className="prb1">{val.no}</h4>
@@ -91,7 +98,14 @@ let Home=()=>{
                 </div>
             </div>))
             }
+            </div>
+            <div className="comm">
+            <div className="comments">
+              <p>Rahul Singh is here.. !</p>
+            </div>
+            </div>
         </div>
+        
     </div>
 </div>
        </>

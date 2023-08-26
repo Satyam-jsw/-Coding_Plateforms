@@ -1,10 +1,11 @@
 import React from 'react'
 import './comm.css'
 import { useState,useEffect } from 'react'
-import { json, useParams } from 'react-router-dom'
+import { json, useParams,useNavigate } from 'react-router-dom'
 
 const Comments = () => {
-  let [user_name,setName]=useState('');
+  let navigate=useNavigate();
+  let [user_name,setName]=useState();
   const  user=async ()=>{
     const response=await fetch('/home',{
         method:"GET",
@@ -35,6 +36,8 @@ const Comments = () => {
  let commenting=async(e)=>{
       e.preventDefault();
      const id=e.target.id;
+     if(user_name)
+     {
      let response=await fetch('/thread',{
       method:"POST",
       headers:{
@@ -45,6 +48,11 @@ const Comments = () => {
   });
   let data = await response.json();
   setBlog(data);
+   }
+   else{
+    window.alert('You are not login !');
+    navigate("/login");
+   }
   setnewComment('');
   setnewPost('');
 

@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require('../db/corn');
@@ -36,10 +37,14 @@ router.get('/home', async (req, res) => {
 
 });
 
+const storage = multer.memoryStorage(); 
+const upload = multer({ storage });
+
 // do registration by user
 router.post('/userregister', async (req, res) => {
   try
   {
+    console.log(req.body);
     const user = await User.find({ email: req.body.email });
 
     for (i in user) 
@@ -59,6 +64,7 @@ router.post('/userregister', async (req, res) => {
       address: req.body.address,
       attempted: 0,
       solved: 0,
+      image:req.image.buffer,
       college: req.body.college,
       password: password
     })
@@ -82,6 +88,7 @@ router.post('/userregister', async (req, res) => {
   }
   catch (error) 
   {
+    console.log('hello');
     res.status(500).send(error);
   }
 
@@ -211,6 +218,7 @@ router.delete('/userlogout',async(req,res)=>{
 
      res.json({status:1,messageToUser:'You are logout'});
   }
+  
   catch(e)
   {
     

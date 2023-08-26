@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ReactPaginate from 'react-paginate';
 import { NavLink } from 'react-router-dom';
-import "../../App.css";
-import 'bootstrap'
 import '../Style/problems.css'
 import Problem from './Question';
 import Acc from './testCaseStatus';
@@ -13,21 +10,10 @@ const Question = (props) =>
   [q,setq]=useState(0)
   const difficulty = props.difficulty;
   const cnt = props.id;
-  var classId = "";
-
-  if (cnt % 2)
-   
-  {
-    classId = "light-row"
-  } 
-  else 
-  {
-    classId = "dark-row";
-  }
 
   return (
-    <tr className={classId}>
-      <th scope="row"><NavLink className="nav-link active" >{props.question_id}</NavLink></th>
+    <tr>
+      <th ><NavLink className="nav-link active" >{props.question_id}</NavLink></th>
       <td><NavLink className="nav-link active" to={`/problem/${props.question_id}`} onClick={() => {setq(props.question_id) }} >{props.question_title}</NavLink></td>
       <td>{props.question_level}</td>
     </tr>
@@ -47,7 +33,8 @@ const handleChange = (e)=>{
 };
 useEffect(() => {
   const arr = question.filter((ques) => {
-    return ques.question_title.toLowerCase().includes(search.toLowerCase());
+    let str=ques.question_title+ques.question_level;
+    return str.toLowerCase().includes(search.toLowerCase());
   });
   setFilteredquestion(arr);
   
@@ -68,13 +55,11 @@ useEffect(() => {
     <>
       
       <div className='container-fluid'>
-      <div className="search" style={{backgroundColor:"transparent"}}>
                 <form> 
                   <input className="form-control mr-sm-2" type="text" onChange={handleChange} placeholder='Search'/>
                 </form>
-          </div>
-        <div className='container table'>
-          <table className='table table-striped table-dark  table-responsive  '>
+        <div className='container-table'>
+          <table className='table table-striped table-dark  table-responsive'>
             <thead>
               <tr>
                 <th scope="col">Problem Id</th>

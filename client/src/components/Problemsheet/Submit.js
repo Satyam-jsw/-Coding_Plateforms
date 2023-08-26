@@ -10,9 +10,27 @@ const Submit=(props)=>{
      let [lan,setLan]=useState('');
      let [code,setCode]=useState('');
      let [output,setOutput]=useState('');
-     
+     let [user_name,setName]=useState();
+     const  user=async ()=>{
+      const response=await fetch('/home',{
+       method:"GET",
+       headers:{
+        'Content-Type':'Application/json',
+        'Access-Control-Allow-Origin':'*'
+       }
+   });
+
+   let data=await response.json();
+    setName(data.name);
+    };
+     useEffect(()=>{
+      user();
+     },[]);
+
      let Run=async(val)=>{
       val.preventDefault();
+      if(user_name)
+      {
       let Data={code:code,language:lan,input:input}
       console.log(Data);
       let response=await fetch('/test',{
@@ -29,10 +47,19 @@ const Submit=(props)=>{
       }
       else
       setOutput(output.data);
+    }
+    else
+    {
+      window.alert('You are not login !');
+      navigate('/login');
+    }
      }
-     
+
      let submitCode=async (val)=>{
       val.preventDefault();
+      
+      if(user_name)
+      {
       let Data={no:questinNo,code:code,language:lan,input:input}
       
       let response=await fetch('/submit',{
@@ -50,6 +77,12 @@ const Submit=(props)=>{
       else{
         answer=output.result;
         navigate('/accp');
+      }
+      }
+      else
+      {
+        window.alert('You are not login !');
+        navigate('/login');
       }
      }
     
