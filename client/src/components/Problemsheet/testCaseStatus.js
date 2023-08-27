@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { answer } from "./Submit";
 import '../Style/testCaseStatus.css'
-let ans1=[1];
+let ans1=[1,0,1,0];
 
 const Acc=()=>{
      console.log(answer); 

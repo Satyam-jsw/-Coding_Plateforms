@@ -13,13 +13,7 @@ let Home=()=>{
        let [attempted,setAttempted]=useState(0);
        let [solved,setSolved]=useState(0);
        const fun=async ()=>{
-        const response=await fetch('https://coding-platform-bitcode.onrender.com/home',{
-            method:"GET",
-            headers:{
-             'Content-Type':'Application/json',
-             'Access-Control-Allow-Origin':'*'
-            }
-        });
+        const response=await fetch('/home');
         let data=await response.json();
         setName(data.name);
         setEmail(data.email);

@@ -7,13 +7,7 @@ const Comments = () => {
   let navigate=useNavigate();
   let [user_name,setName]=useState();
   const  user=async ()=>{
-    const response=await fetch('/home',{
-        method:"GET",
-        headers:{
-         'Content-Type':'Application/json',
-         'Access-Control-Allow-Origin':'*'
-        }
-    });
+    const response=await fetch('/home');
     let data=await response.json();
     setName(data.name);
   }
@@ -22,13 +16,7 @@ const Comments = () => {
   const [comment,setnewComment]=useState('');
   const [post,setnewPost]=useState('');
   const fun = async () => {
-    const response = await fetch('/discussion',{
-      method:"GET",
-      headers:{
-       'Content-Type':'Application/json',
-       'Access-Control-Allow-Origin':'*'
-      }
-    });
+    const response = await fetch('/discussion');
     let data = await response.json();
     setBlog(data);
     
