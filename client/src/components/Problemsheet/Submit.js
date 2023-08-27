@@ -3,7 +3,7 @@ import "../../App.css";
 import { useNavigate } from "react-router-dom";
 let answer=[];
 const Submit=(props)=>{
-  
+
   const navigate=useNavigate();
      let questinNo=props.p1;
      let [input,setInput]=useState(props.p2);
@@ -32,7 +32,6 @@ const Submit=(props)=>{
       if(user_name)
       {
       let Data={code:code,language:lan,input:input}
-      console.log(Data);
       let response=await fetch('/test',{
         method:"POST",
         headers: {

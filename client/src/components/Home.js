@@ -12,6 +12,8 @@ let Home=()=>{
        let [college,setCollege]=useState('');
        let [attempted,setAttempted]=useState(0);
        let [solved,setSolved]=useState(0);
+       let [image,setImage]=useState();
+
        const fun=async ()=>{
         const response=await fetch('/home');
         let data=await response.json();
@@ -21,9 +23,10 @@ let Home=()=>{
         setCollege(data.college);
         setSolved(data.solved);
         setAttempted(data.attempted);
+        setImage(data.image);
         if(data.messageToUser!=''){
         Window.alert(data.messageToUser);
-    navigate('/login')}
+        navigate('/login')}
         let arr=[];
         for(let i in data.history){
           arr.push(i);
@@ -43,7 +46,7 @@ let Home=()=>{
         <div className="profile-header-cover"></div>
             <div className="profile-header-content about">
                 <div className="profile-header-img">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" />
+                    <img src={image} alt="" />
                 </div>
                 <ul className="profile-header-tab nav nav-tabs nav-tabs-v2">
                     <li className="nav-item">

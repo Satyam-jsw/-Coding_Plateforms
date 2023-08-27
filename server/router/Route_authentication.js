@@ -21,13 +21,12 @@ router.get('/home', async (req, res) => {
     const token = req.cookies.jwt;
     const verifyUser = jwt.verify(token, process.env.SECRET_KEY);
     const user = await User.findOne({ _id: verifyUser._id });
-
     if (!user) 
     {
-      return res.json({ name, email, address, college, attempted, solved, history, messageToUser: 'U r not logged in' })
+      return res.json({ name, email, address, college, attempted, solved, history, image,messageToUser: 'U r not logged in' })
     }
 
-    return res.json({ name: user.name, email: user.email, address: user.address, college: user.college, attempted: user.attempted, solved: user.solved, history: user.history, messageToUser:'' })
+    return res.json({ name: user.name, email: user.email, address: user.address,image:user.image, college: user.college, attempted: user.attempted, solved: user.solved, history: user.history, messageToUser:'' })
 
   } 
   catch (error) 
@@ -44,7 +43,6 @@ const upload = multer({ storage });
 router.post('/userregister', async (req, res) => {
   try
   {
-    console.log(req.body);
     const user = await User.find({ email: req.body.email });
 
     for (i in user) 
@@ -64,11 +62,10 @@ router.post('/userregister', async (req, res) => {
       address: req.body.address,
       attempted: 0,
       solved: 0,
-      image:req.image.buffer,
+      image:req.body.image,
       college: req.body.college,
       password: password
     })
-
     const token = jwt.sign({ _id: data._id }, process.env.SECRET_KEY);
 
     data.tokens = data.tokens.concat({ token: token });
@@ -89,7 +86,7 @@ router.post('/userregister', async (req, res) => {
   catch (error) 
   {
     console.log('hello');
-    res.status(500).send(error);
+    res.status(500).json({ status: 0, messageToUser: "You have not registered successfully!" });
   }
 
 });

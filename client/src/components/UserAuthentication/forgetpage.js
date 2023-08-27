@@ -4,7 +4,7 @@ import { useState } from "react";
 
 let Forgetpage = () => {
   let { token } = useParams();
-  // console.log(token);
+
   let [email, setEmail] = useState('');
   let [password, setPassword] = useState('');
 
@@ -12,7 +12,7 @@ let Forgetpage = () => {
     event.preventDefault();
 
     let newPassword = { email: email, password: password };
-    //  console.log(val1);
+    
 
     let response = await fetch(`/forgetpassword/${token}`, {
       method: 'POST',

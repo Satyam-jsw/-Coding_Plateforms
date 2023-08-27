@@ -7,7 +7,6 @@ let Forget = () => {
   let [email, setEmail] = useState('');
   let fun = async (event) => {
     event.preventDefault();
-    console.log(email);
 
     let res = await fetch('/sendmail', {
       method: 'POST',

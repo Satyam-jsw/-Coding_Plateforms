@@ -4,7 +4,6 @@ import '../Style/testCaseStatus.css'
 let ans1=[1,0,1,0];
 
 const Acc=()=>{
-     console.log(answer); 
      return (
 
       <div>

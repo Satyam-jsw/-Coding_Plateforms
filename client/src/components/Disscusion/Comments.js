@@ -11,7 +11,7 @@ const Comments = () => {
     let data=await response.json();
     setName(data.name);
   }
-  
+
   const [blog,setBlog] = useState([]);
   const [comment,setnewComment]=useState('');
   const [post,setnewPost]=useState('');

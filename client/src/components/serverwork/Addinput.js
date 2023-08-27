@@ -3,7 +3,6 @@ import { useState } from "react";
 
 
 let INPUT = (prop) => {
-    
     let [Id, setId] = useState(0);
     let [input, setInput] = useState([]);
     let [output, setOutput] = useState([]);

@@ -267,12 +267,17 @@ const Register=()=>{
           let [college,setCollege]=useState('');
           let [confirmPassword,setConfirmPassword]=useState('');
           let [password,setPassword]=useState('');
-          let [image, setFile] = useState();
-    
+          let [image, setImage] = useState();
+
           const handleFileChange = (e) => {
-            const selectedFile = e.target.files[0];
-            setFile(selectedFile);
-          };
+            var reader = new FileReader();
+            reader.readAsDataURL(e.target.files[0]);
+            reader.onload = () => {
+            setImage(reader.result);
+            }
+            
+        }
+
 
           let submitForm=async (val)=>{
             val.preventDefault();
@@ -308,7 +313,7 @@ const Register=()=>{
             setPassword('');
             setConfirmPassword('');
             setAddress('');
-            setFile('');
+            setImage('');
             setCollege('');
             window.alert(result.messageToUser);
             navigate('/');
@@ -374,9 +379,10 @@ const Register=()=>{
                                <i className="fas fa-key"></i> </span>
                            </div>
                            <input type="password" className="form-control" onChange={(e) => { setConfirmPassword(e.target.value) }} placeholder="Re-enter Password"/>
-                       </div>  
+                       </div> 
                        <input type="file" onChange={handleFileChange} />
-                       {image && <p>Selected File: {image.name}</p>}              
+                       <p>image size will be less than 50kB</p>
+                       {image && <p>{image.name}</p>}              
                        <div className="form-group">
                            <input type="submit"  value="Register" className="btn float-right login_btn" onClick={submitForm}/>
                        </div>

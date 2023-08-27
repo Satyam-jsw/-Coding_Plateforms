@@ -1,17 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react';
-// import './css/home.css';
+
 import 'bootstrap/dist/css/bootstrap.css';
 import '../Style/login.css'
 import {Link, NavLink, useNavigate } from 'react-router-dom';
-// import { UserContext } from '../App';
+
 const Login = () => {
-  // const {state,dispatch}=useContext(UserContext);
+ 
   const navigate = useNavigate();
   let [email, setEmail] = useState('');
   let [password, setPassword] = useState('');
   let fun = (val) => {
     val.preventDefault();
-
+  
     let data = { email, password };
 
     fetch("/userlogin", {
@@ -41,7 +41,7 @@ const Login = () => {
         navigate('/login');
         setEmail('');
         setPassword('');
-        console.log(error)
+        
       })
 
   }

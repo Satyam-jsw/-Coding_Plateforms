@@ -35,6 +35,9 @@ const Schema=mongoose.Schema({
     college:{
       type:String
     },
+    image:{
+      type: String
+    },
     solved:{
      type:Number
     },
@@ -46,10 +49,6 @@ const Schema=mongoose.Schema({
         type:String
       }
     }],
-    image:{
-      data: Buffer, 
-      contentType: String,
-    }
     })
 
 

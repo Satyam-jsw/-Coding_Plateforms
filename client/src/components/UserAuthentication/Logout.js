@@ -1,11 +1,8 @@
 import React, { useContext, useEffect } from 'react';
-// import './css/home.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { NavLink, useNavigate } from 'react-router-dom';
-// import { UserContext } from '../App';
 
 const Logout = () => {
-    // const {state,dispatch}=useContext(UserContext)
     const navigate = useNavigate();
     let fun = async () => {
 
@@ -18,11 +15,11 @@ const Logout = () => {
         const data = await res.json();
         if (data.status==0) 
         {
+            navigate('/login');
             window.alert(data.messageToUser);
         }
         else 
         {
-            // dispatch({type:"USER",payload:false});
             navigate('/login');
             window.alert(data.messageToUser);
         }
