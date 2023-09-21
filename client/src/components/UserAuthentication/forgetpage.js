@@ -14,7 +14,7 @@ let Forgetpage = () => {
     let newPassword = { email: email, password: password };
     
 
-    let response = await fetch(`/forgetpassword/${token}`, {
+    let response = await fetch(`https://coding-platform-bitcode.onrender.com/forgetpassword/${token}`, {
       method: 'POST',
       headers: 
       {

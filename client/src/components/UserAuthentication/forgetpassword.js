@@ -8,7 +8,7 @@ let Forget = () => {
   let fun = async (event) => {
     event.preventDefault();
 
-    let res = await fetch('/sendmail', {
+    let res = await fetch('https://coding-platform-bitcode.onrender.com/sendmail', {
       method: 'POST',
       headers: 
       {

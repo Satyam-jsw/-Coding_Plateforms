@@ -10,7 +10,7 @@ const CreatePost = () => {
     const [title, setTitle] = useState('');
 
     const user = async () => {
-        const response = await fetch('/home', {
+        const response = await fetch('https://coding-platform-bitcode.onrender.com/home', {
             method: "GET",
             headers: {
                 'Content-Type': 'Application/json',

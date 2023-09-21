@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 const Logout = () => {
     const navigate = useNavigate();
     useEffect(() => {
-          fetch('/userlogout', {
+          fetch('https://coding-platform-bitcode.onrender.com/userlogout', {
             method: "DELEtE",
             headers: {
                 "Accept": "application/json",

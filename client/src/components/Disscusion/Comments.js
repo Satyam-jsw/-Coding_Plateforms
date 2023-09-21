@@ -7,7 +7,7 @@ const Comments = () => {
   let navigate=useNavigate();
   let [user_name,setName]=useState();
   const  user=async ()=>{
-    const response=await fetch('/home');
+    const response=await fetch('https://coding-platform-bitcode.onrender.com/home');
     let data=await response.json();
     setName(data.name);
   }
@@ -17,7 +17,7 @@ const Comments = () => {
   const [post,setnewPost]=useState('');
   const [ok,setOk] = useState(false);
   const fun = async () => {
-    const response = await fetch('/discussion');
+    const response = await fetch('https://coding-platform-bitcode.onrender.com/discussion');
     let data = await response.json();
     setBlog(data);
     
@@ -28,7 +28,7 @@ const Comments = () => {
      const id=e.target.id;
      if(user_name)
      {
-     let response=await fetch('/thread',{
+     let response=await fetch('https://coding-platform-bitcode.onrender.com/thread',{
       method:"POST",
       headers:{
        'Content-Type':'Application/json',
