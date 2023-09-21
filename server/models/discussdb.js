@@ -10,6 +10,9 @@ const Schema=mongoose.Schema({
         post:{
             type:String
         },
+        title: {
+            type: String
+        },
         comments: [
             {
                 user_name:{

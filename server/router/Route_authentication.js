@@ -85,7 +85,6 @@ router.post('/userregister', async (req, res) => {
   }
   catch (error) 
   {
-    console.log('hello');
     res.status(500).json({ status: 0, messageToUser: "You have not registered successfully!" });
   }
 
@@ -102,7 +101,6 @@ router.post('/userlogin', async (req, res) => {
     }
     
     const matchPassword = await bcrypt.compare(req.body.password, user.password);
-    console.log(matchPassword);
     
     if (matchPassword) 
     {
@@ -219,7 +217,7 @@ router.delete('/userlogout',async(req,res)=>{
   catch(e)
   {
     
-     res.json({status:0,messageToUser:'You are not logout'});
+     res.json({status:0,messageToUser:'Do login .'});
   }
 });
 

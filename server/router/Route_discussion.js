@@ -24,8 +24,7 @@ router.get('/discussion', async (req, res) => {
 
 router.post('/thread', async (req, res) => {
   try {
-   
-    const {id,user_name,post,comment} = req.body;
+    const {id,title,user_name,post,comment} = req.body;
     
     if(post == '') {
       let commentarray=await Comm.findOne({_id:id}).select({_id:false,comments:true});
@@ -36,7 +35,7 @@ router.post('/thread', async (req, res) => {
         
 
     } else {
-      const data= new Comm({Uname:user_name,post:post})
+      const data= new Comm({Uname:user_name,title:title,post:post})
       await data.save();
     }
     const comments = await Comm.find();

@@ -1,38 +1,32 @@
-import React, { useContext, useEffect } from 'react';
-import 'bootstrap/dist/css/bootstrap.css';
-import { NavLink, useNavigate } from 'react-router-dom';
+import React,{useEffect} from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Logout = () => {
     const navigate = useNavigate();
-    let fun = async () => {
-
-        const res = await fetch('/userlogout', {
-            method: 'DELETE',
-            headers: {
-                'Contian-Type': 'application/json'
-            }
-        });
-        const data = await res.json();
-        if (data.status==0) 
-        {
-            navigate('/login');
-            window.alert(data.messageToUser);
-        }
-        else 
-        {
-            navigate('/login');
-            window.alert(data.messageToUser);
-        }
-    }
     useEffect(() => {
-        fun();
-    }, []);
+          fetch('/userlogout', {
+            method: "DELEtE",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            credentials:"include"
+          }).then((res) => {
+            window.alert("User Logged Out");
+            navigate('/login');
+            window.location.reload(true);
+            if(!res.status === 200) {
+                const error = new Error(res.error);
+                throw error;
+            }
+          }).catch((err) => {
+            console.log(err);
+          })
+    }, [])
     
-    return (
-        <>
-            <h1>You have logout suuccesfully</h1>
-        </>
-    )
+  return (
+    <div></div>
+  )
 }
 
-export default Logout;
+export default Logout

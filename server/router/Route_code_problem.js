@@ -14,15 +14,13 @@ router.post('/test', async (req, res) => {
 
   var data = {
     code: req.body.code,
-    language: req.body.language,
-    input: req.body.input
+    id: req.body.id,
+    input: req.body.input,
   };
-
-  let Output = await code(data);
-  console.log(Output);
-  res.send(Output);
+  let OutputPerTest = await code(data);
+  
+  res.send({OutputPerTest,ok:'1'});
 });
-
 
 /*add new questions property
 {question_id,question_title,question_topic,question_description,question_level,acceptance_rate,
@@ -75,124 +73,99 @@ router.post('/submit', async (req, res) => {
     const question_id = req.body.no;
     const question = await Que.find({ question_id });
     const input1 = question[0].input;
+    const question_level=question[0].question_level;
     const origenal_output = question[0].output;
     const question_name = question[0].question_title;
     let result = [];
-
-    for (let i = 0; i < input1.length; i++) 
-    {
-
+    let i=0;
+    let myfun=async ()=>{
       var data = {
         code: req.body.code,
-        language: req.body.language,
-        input: input1[i]
+        id: req.body.id,
+        input: input1[i],
+        output:origenal_output[i]
       };
 
       let OutputPerTest = await code(data);
-      let error = OutputPerTest.err;
-      let Output = OutputPerTest.data;
-      if (error) {
-        answer.error = error;
-        return res.send(answer);
-      }
-      else 
+      console.log(OutputPerTest);
+      if(OutputPerTest)
+      i++;
+      console.log(i);
+      if(i==5)
       {
-
-        let flag1 = 0, flag2 = 0;
-        let flag = 1;
-        while (flag1 < Output.length && flag2 < origenal_output[i].length) {
-          if (origenal_output[i][flag2] === '\r') {
-            flag2++;
-          }
-          else if (Output[flag1] === origenal_output[i][flag2]) {
-            flag1++;
-            flag2++;
-          }
-          else {
-            flag = 0;
-            break;
-          }
-        }
-
-        while (flag2 < origenal_output[i].length && (origenal_output[i][flag2] === '\n'
-          || origenal_output[i][flag2] === '\r'))
-          flag2++;
-
-        while (flag1 < Output.length && (Output[flag1] === '\n' || Output[flag1] === '\r'))
-          flag1++;
-
-        if (flag1 < Output.length || flag2 < origenal_output[i].length)
-          flag = 0;
-
-        if (flag == 0)
-          check = 0;
-
-        result.push(flag);
-        console.log(flag);
-
+      clearInterval(intervalId);
       }
+
+      // let error = OutputPerTest.stderr;
+      // if(error)
+      // return res.send({OutputPerTest,ok:0});
+      // let Output = atob(OutputPerTest.stdout);
+      // let memory=OutputPerTest.memory;
+      // let time=OutputPerTest.time;
+      // let status=OutputPerTest.status.description;
+      //   result.push({error,Output,memory,time,status});
     }
+    const intervalId = setInterval(myfun, 5000);
    //check all testcases are passed or not.
-    let ok = 0;
-    for (let i = 0; i < result.length; i++)
-    {
-      if (result[i] == 0)
-        ok = 1;
-    }
+    // let ok = '0';
+    // for (let i = 0; i < result.length; i++)
+    // {
+    //   if (result[i].status == 'Accepted')
+    //     ok = '1';
+    // }
   
-    const token = req.cookies.jwt;
-    const verifyUser = jwt.verify(token, process.env.SECRET_KEY);
-    const User = await User.findOne({ _id: verifyUser._id });
+    // const token = req.cookies.jwt;
+    // const verifyUser = jwt.verify(token, process.env.SECRET_KEY);
+    // const user = await User.findOne({ _id: verifyUser._id });
     
-    //update question details in userdatabse.
-    let historyArray = User.history;
-    let attempted, solved, status;
+    // //update question details in userdatabse.
+    // let historyArray = user.history;
+    // let attempted=0, solved=0, status='';
     
 
-    if (historyArray.length == 0) 
-    {
-      if (ok == 0) 
-      {
-        historyArray.push({ no: question_id, name: question_name, status: 'Solved', code: req.body.code });
-        solved = User.solved + 1;
-      }
-      else 
-      {
-        historyArray.push({ no: question_id, name: question_name, status: 'Attempted', code: req.body.code });
-        attempted = User.attempted + 1;
-      }
-    }
-    else 
-    {
-      let questionIsPresent = true;
-      for (let i = 0; i < historyArray.length; i++) 
-      {
-        if (historyArray[i].no == question_id) 
-        {
-          questionIsPresent = false;
-          if (i.status == 'Solved')
-            break;
-          else 
-          {
-            if (ok) 
-            {
-              historyArray[i] = { no: question_id, name: question_name, status: 'Solved', code: req.body.code };
-            }
-          }
-        }
+    // if (historyArray.length == 0) 
+    // {
+    //   if (ok === '0') 
+    //   {
+    //     historyArray.push({ no: question_id, name: question_name, status: 'Solved', code: req.body.code });
+    //     solved = user.solved + 1;
+    //   }
+    //   else 
+    //   {
+    //     historyArray.push({ no: question_id, name: question_name, status: 'Attempted', code: req.body.code });
+    //     attempted = user.attempted + 1;
+    //   }
+    // }
+    // else 
+    // {
+    //   let questionIsPresent = true;
+    //   for (let i = 0; i < historyArray.length; i++) 
+    //   {
+    //     if (historyArray[i].no == question_id) 
+    //     {
+    //       questionIsPresent = false;
+    //       if (i.status == 'Solved')
+    //         break;
+    //       else 
+    //       {
+    //         if (ok) 
+    //         {
+    //           historyArray[i] = { no: question_id, name: question_name, status: 'Solved',level:question_level, code: req.body.code };
+    //         }
+    //       }
+    //     }
 
-      }
-      if (questionIsPresent) 
-      {
-        historyArray.push({ no: question_id, name: question_name, status: 'Attempted', code: req.body.code });
-        attempted = emp.attempted + 1;
-      }
-    }
+    //   }
+    //   if (questionIsPresent) 
+    //   {
+    //     historyArray.push({ no: question_id, name: question_name,level:question_level status: 'Attempted', code: req.body.code });
+    //     attempted = emp.attempted + 1;
+    //   }
+    // }
 
-    await User.findOneAndUpdate({ _id: emp._id }, { $set: { attempted: attempted, solved: solved, history: historyArray } })
-    answer.result = result;
-
-    res.send(answer);
+    // await User.findOneAndUpdate({ _id: user._id }, { $set: { attempted: attempted, solved: solved, history: historyArray } })
+    
+    res.send({result,ok:1});
 
   } 
   catch (error) 

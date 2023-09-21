@@ -13,6 +13,7 @@ import Register from './components/UserAuthentication/Register';
 import Forgetpage from './components/UserAuthentication/forgetpage';
 import Forget from './components/UserAuthentication/forgetpassword';
 import Error from './components/Error';
+import CreatePost from './components/Disscusion/CreatePost'
 
 function App() {
   return (
@@ -25,13 +26,15 @@ function App() {
       <Route path='/discuss' element={<Comments/>}/> 
       <Route path='/addnq' element={<Add/>}/>
       <Route path='/addinput' element={<INPUT/>}/>
-      <Route path='/accp' element={<Acc/>}/>
+      <Route path='/accp/:str' element={<Acc/>}/>
       <Route path='/login' element={<Login/>}/>
       <Route path='/register' element={<Register/>}/>
       <Route path='/logout' element={<Logout/>}/>
       <Route path='/forgetpage/:token' element={<Forgetpage/>}/>
       <Route path='/forgetpass' element={<Forget/>}/>
+      <Route path='/createpost' element={<CreatePost/>}/>
       <Route path='*' element={<Error/>}></Route>
+
       
     </Routes>
     </>
