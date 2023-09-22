@@ -22,7 +22,7 @@ let Add = () => {
         const data = { question_title, question_level, acceptance_rate, question_description, question_topic, constraints, input_description, output_description };
         
 
-        let response = await fetch('https://coding-platform-bitcode.onrender.com/add', {
+        let response = await fetch('/add', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

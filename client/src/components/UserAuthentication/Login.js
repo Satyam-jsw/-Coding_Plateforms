@@ -14,7 +14,7 @@ const Login = () => {
   
     let data = { email, password };
 
-    fetch("https://coding-platform-bitcode.onrender.com/userlogin", {
+    fetch("/userlogin", {
       method: "POST",
       headers: 
       {

@@ -15,7 +15,7 @@ const Problem = (props) => {
     let val={no:number};
     try {
        
-      const res = await fetch("https://coding-platform-bitcode.onrender.com/sendq", {
+      const res = await fetch("/sendq", {
         method: "POST",
         headers: {
           "Accept": "application/json",

@@ -27,7 +27,7 @@ let INPUT = (prop) => {
 
         let data = { input: input, output: output, id: prop.no };
 
-        let res = await fetch('https://coding-platform-bitcode.onrender.com/input', {
+        let res = await fetch('/input', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

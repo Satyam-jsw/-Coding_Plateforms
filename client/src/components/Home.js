@@ -27,7 +27,7 @@ let Home=()=>{
       ]);
       
        const fun=async ()=>{
-        const response=await fetch('https://coding-platform-bitcode.onrender.com/home');
+        const response=await fetch('/home');
         let data=await response.json();
         setName(data.name);
         setEmail(data.email);

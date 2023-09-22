@@ -5,7 +5,7 @@ const Navbar = () => {
   const [loggedin, setLoggedin] = useState(0);
 
   const fun = async () => {
-    const response = await fetch("https://coding-platform-bitcode.onrender.com/home", {
+    const response = await fetch("/home", {
       "method": "GET",
       "headers": {
         "Content-Type": "applications/json",

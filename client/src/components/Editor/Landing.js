@@ -39,7 +39,7 @@ const Landing = () => {
 
   let [user_name,setName]=useState();
      const  user=async ()=>{
-      const response=await fetch('https://coding-platform-bitcode.onrender.com/home',{
+      const response=await fetch('/home',{
        method:"GET",
        headers:{
         'Content-Type':'Application/json',
