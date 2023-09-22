@@ -1,3 +1,13 @@
+# Project ScreenShot 
+### Under Working Process
+![Screenshot (517)](https://github.com/Satyam-jsw/Bitcode/assets/96405804/fb83463b-b789-42cf-9018-807adf24b82f)
+![Screenshot (518)](https://github.com/Satyam-jsw/Bitcode/assets/96405804/0b05c640-f38a-4aa7-b46f-6203cc7a145d)
+![Screenshot (508)](https://github.com/Satyam-jsw/Bitcode/assets/96405804/dbdbc95b-d7c1-4b6a-aede-ceed43bdb5b1)
+![Screenshot (503)](https://github.com/Satyam-jsw/Bitcode/assets/96405804/5c2481ff-0171-4a4a-8ac2-4aacd7a9ba42)
+![Screenshot (511)](https://github.com/Satyam-jsw/Bitcode/assets/96405804/cc751d8d-fd36-442f-b68e-f7a16ba07539)
+![Screenshot (512)](https://github.com/Satyam-jsw/Bitcode/assets/96405804/367fdef9-a195-4550-ba5a-30d40d39d6dc)
+![Screenshot (509)](https://github.com/Satyam-jsw/Bitcode/assets/96405804/0ac74e14-0362-430f-bbcb-9bbb825c7f53)
+![Screenshot (510)](https://github.com/Satyam-jsw/Bitcode/assets/96405804/c55f2bf7-d35b-4b98-814d-fbb062321aa9)
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
