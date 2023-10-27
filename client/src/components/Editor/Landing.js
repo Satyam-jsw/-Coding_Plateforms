@@ -39,7 +39,7 @@ const Landing = () => {
 
   let [user_name,setName]=useState();
      const  user=async ()=>{
-      const response=await fetch('/home',{
+      const response=await fetch('https://coding-platform-bitcode.vercel.app/home',{
        method:"GET",
        headers:{
         'Content-Type':'Application/json',
@@ -89,7 +89,7 @@ const Landing = () => {
       {
       setProcessingrun(true);
       // console.log(Data);
-      let response=await fetch('/test',{
+      let response=await fetch('https://coding-platform-bitcode.vercel.app/test',{
         method:"POST",
         headers: {
           "Accept": "application/json",
@@ -117,7 +117,7 @@ const Landing = () => {
       if(user_name)
       {
     
-      let response=await fetch('/submit',{
+      let response=await fetch('https://coding-platform-bitcode.vercel.app/submit',{
         method:"POST",
         headers: {
           "Accept": "application/json",

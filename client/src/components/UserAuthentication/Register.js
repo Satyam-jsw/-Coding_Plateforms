@@ -284,7 +284,7 @@ const Register=()=>{
             
             let data={name,email,password,confirmPassword,image,address,college};
             
-            const response=await fetch("/userregister",{
+            const response=await fetch("https://coding-platform-bitcode.vercel.app/userregister",{
               method: "POST",
               headers: {
                 "Accept": "application/json",
@@ -300,7 +300,7 @@ const Register=()=>{
            }
            else
            {
-            const response=await fetch("/userlogin",{
+            const response=await fetch("https://coding-platform-bitcode.vercel.app/userlogin",{
                 method: "POST",
                 headers: {
                   "Accept": "application/json",

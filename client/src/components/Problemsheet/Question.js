@@ -15,7 +15,7 @@ const Problem = (props) => {
     let val={no:number};
     try {
        
-      const res = await fetch("/sendq", {
+      const res = await fetch("https://coding-platform-bitcode.vercel.app/sendq", {
         method: "POST",
         headers: {
           "Accept": "application/json",

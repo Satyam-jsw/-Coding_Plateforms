@@ -10,7 +10,7 @@ const CreatePost = () => {
     const [title, setTitle] = useState('');
 
     const user = async () => {
-        const response = await fetch('/home', {
+        const response = await fetch('https://coding-platform-bitcode.vercel.app/home', {
             method: "GET",
             headers: {
                 'Content-Type': 'Application/json',
@@ -25,7 +25,7 @@ const CreatePost = () => {
     
         e.preventDefault();
         const id = e.target.id;
-        let response = await fetch('/thread', {
+        let response = await fetch('https://coding-platform-bitcode.vercel.app/thread', {
             method: "POST",
             headers: {
                 'Content-Type': 'Application/json',

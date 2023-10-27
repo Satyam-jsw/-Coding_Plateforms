@@ -40,7 +40,7 @@ useEffect(() => {
 }, [search, question]);
 
   let fun = async () => {
-    let response = await fetch('/qlist');
+    let response = await fetch('https://coding-platform-bitcode.vercel.app/qlist');
     let data = await response.json();
     setQuestion(data);
   };
