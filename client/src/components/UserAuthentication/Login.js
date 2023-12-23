@@ -14,7 +14,7 @@ const Login = () => {
   
     let data = { email, password };
 
-    fetch("/userlogin", {
+    fetch("https://coding-platform-bitcode.vercel.app/userlogin", {
       method: "POST",
       headers: 
       {
@@ -30,10 +30,12 @@ const Login = () => {
         if (data.status ==1) 
         {
           navigate('/');
+          window.location.reload(true);
         }
         else 
         {
           navigate('/login');
+          
         }
       })
       .catch((error) => {
@@ -43,7 +45,7 @@ const Login = () => {
         setPassword('');
         
       })
-
+      
   }
 
   return (

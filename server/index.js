@@ -13,7 +13,8 @@ app.use(
   cors({
        origin: '*',
        methods: ['GET','POST','PUT','DELETE'],
-       Credential:true
+       Credential:true,
+       Headers: 'Authorization'
       })
 );
 

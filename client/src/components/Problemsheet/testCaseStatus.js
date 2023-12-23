@@ -1,23 +1,27 @@
 import React, { useState } from "react";
-import { answer } from "./Submit";
 import '../Style/testCaseStatus.css'
-let ans1=[1,0,1,0];
+import { useParams } from "react-router-dom";
+
 
 const Acc=()=>{
+   const {str}=useParams();
+   const jsonString = atob(str);
+    const ans = JSON.parse(jsonString);
+    console.log(ans);
      return (
 
       <div>
          <div className="accp">
             <label className="status-label">Test Case Status</label>
             {
-               ans1.map((val, i) =>
+               ans.map((val, i) =>
                (val === 0 ? (
                   <label key={i} className="accq wrong">
                      Test case {i + 1}: Wrong
                   </label>
                ) : (
                   <label key={i} className="accq accept">
-                     Test case {i + 1}: Accept
+                     Test case {i + 1}: Accepted
                   </label>
                )))
             }
