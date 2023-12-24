@@ -8,6 +8,11 @@
 ![Screenshot (512)](https://github.com/Satyam-jsw/Bitcode/assets/96405804/367fdef9-a195-4550-ba5a-30d40d39d6dc)
 ![Screenshot (509)](https://github.com/Satyam-jsw/Bitcode/assets/96405804/0ac74e14-0362-430f-bbcb-9bbb825c7f53)
 ![Screenshot (510)](https://github.com/Satyam-jsw/Bitcode/assets/96405804/c55f2bf7-d35b-4b98-814d-fbb062321aa9)
+
+## To DO !
+1. working on back-end and also on Front-End.
+2. Integrate with compiler API.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
